@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nicolás Paz - Porfolio</title>
+    <link rel="icon" type="image/png" href="./public/portf.png" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#inicio" class="logo">Nicolas Paz</a>
+        <ul class="nav-links">
+          <li><a href="#">Sobre Mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contacto" class="btn-contact">Contacto</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <section id="inicio" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-text">
+          <span class="badge">Disponible para trabajar</span>
+          <h1>Hola, soy <span class="text-gradient">Nicolas</span></h1>
+          <h2>Desarrollador Full-Stack Junior</h2>
+          <p>
+            Soy un apasionado por la tecnología y el código. Me especializo en
+            construir experiencias web modernas y funcionales, aprendiendo cada
+            día nuevas herramientas. Actualmente cursando la Tecnicatura
+            Universitaria en Programación (UTN), complementando mi formación
+            práctica Full Stack con bases sólidas de ingeniería de software.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#proyectos" class="btn-hero primary"> Ver Proyectos </a>
+            <a href="./public/Nicolas_Paz_Malizia_CV.pdf" class="btn-hero outline" download>
+              Descargar CV <i class="fas fa-download"></i>
+            </a>
+          </div>
+
+          <div class="hero-tech-stack">
+            <span><i class="fab fa-react"></i> React</span>
+            <span><i class="fab fa-node-js"></i> Node.js</span>
+            <span><i class="devicon-csharp-plain"></i> C# .NET</span>
+            <span><i class="fas fa-database"></i> MySQL</span>
+            <span><i class="fas fa-leaf"></i> MongoDB</span>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/nicopazz/" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://github.com/nicopazz" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="mailto:nicopazmalizia@gmail.com"
+              ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="hero-image-container">
+          <div class="glow-effect"></div>
+          <img
+            src="public/perfil.jfif"
+            alt="Foto de perfil"
+            class="profile-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section-padding">
+      <div class="container">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="projects-grid">
+          
+          <div class="project-card card-blue">
+            <div class="card-header">
+              <div class="status-badge badge-beta">
+                <i class="fas fa-flask"></i> v1.0 Beta
+              </div>
+              <img src="./public/rollingvet.png" alt="RollingVet" class="project-img">
+            </div>
+            <div class="card-body">
+              <h3>RollingVet</h3>
+              <p>
+                <strong>Sistema de Gestión Clínica & Dashboard.</strong> Plataforma integral (SPA) desarrollada con el stack MERN. Incluye autenticación segura (JWT), roles y panel administrativo CRUD.
+                <br><br>
+                🚧 <em>Refinando lógica de negocio y optimizando UX/UI.</em>
+              </p>
+              <div class="tech-icons">
+                <i class="fab fa-react" title="React"></i>
+                <i class="fab fa-node-js" title="Node.js"></i>
+                <i class="fas fa-database" title="MongoDB"></i>
+              </div>
+              <div class="card-actions">
+                <a href="https://github.com/nicopazz/rollingvet" target="_blank" class="btn-card secondary"
+                  ><i class="fab fa-github"></i> Código</a
+                >
+                <a href="https://rollingvet-tuc.netlify.app/" target="_blank" class="btn-card primary"
+                  ><i class="fas fa-external-link-alt"></i> Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card card-purple">
+            <div class="card-header">
+              <div class="status-badge badge-wip">
+                <i class="fas fa-tools"></i> WIP
+              </div>
+              <img src="./public/esmae.png" alt="Esmae" class="project-img">
+            </div>
+            <div class="card-body">
+              <h3>Esmae Store</h3>
+              <p>
+                <strong>Catálogo E-commerce Moderno.</strong> Interfaz visual de alto impacto para una marca de espejos. Desarrollo enfocado en React Hooks, componentes reutilizables y diseño "Mobile First".
+                <br><br>
+                🛠️ <em>En construcción: Integración de pasarela de pagos.</em>
+              </p>
+              <div class="tech-icons">
+                <i class="fab fa-react" title="React"></i>
+                <i class="fab fa-css3-alt" title="CSS3"></i>
+                <i class="fab fa-js" title="JavaScript"></i>
+              </div>
+              <div class="card-actions">
+                <a href="https://github.com/nicopazz/esmae-frontend" target="_blank" class="btn-card secondary"
+                  ><i class="fab fa-github"></i> Código</a
+                >
+                <a href="https://esmae.vercel.app/" target="_blank" class="btn-card primary"
+                  ><i class="fas fa-external-link-alt"></i> Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card card-red">
+            <div class="card-header">
+              <div class="status-badge badge-soon">
+                <i class="fas fa-lightbulb"></i> Concepto
+              </div>
+              <img src="./public/proximamente.png" alt="App" class="project-img">
+            </div>
+            <div class="card-body">
+              <h3>Sistema de Inventario</h3>
+              <p>
+                <strong>Aplicación de Escritorio .NET.</strong> Proyecto planificado para gestión de stock y facturación utilizando arquitectura en capas.
+                <br><br>
+                🚀 <em>Próximamente: Definición de arquitectura y base de datos.</em>
+              </p>
+              <div class="tech-icons">
+                <i class="devicon-csharp-plain" title="C#"></i>
+                <i class="fas fa-database" title="SQL Server"></i>
+              </div>
+              <div class="card-actions">
+                <a href="#" class="btn-card secondary" style="pointer-events: none; opacity: 0.5;"
+                  ><i class="fab fa-github"></i> Pendiente</a
+                >
+                <a href="#" class="btn-card secondary" style="pointer-events: none; opacity: 0.5;"
+                  ><i class="fas fa-clock"></i> Espera</a
+                >
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section-padding section-darker">
+      <div class="container">
+        <h2 class="section-title">Mis Habilidades</h2>
+        <div class="skills-container">
+          <div class="skill-box">
+            <div class="skill-info">
+              <p><i class="fab fa-js"></i> JavaScript (ES6+)</p>
+              <p>90%</p>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <div class="skill-info">
+              <p><i class="fab fa-react"></i> React.js</p>
+              <p>85%</p>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <div class="skill-info">
+              <p><i class="fas fa-code"></i> C# / .NET Framework</p>
+              <p>70%</p>
+            </div>
+            <div class="progress-bar-bg">
+              <div
+                class="progress-bar-fill"
+                style="width: 70%; background: var(--accent-purple)"
+              ></div>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <div class="skill-info">
+              <p><i class="fab fa-node"></i> Node.js & Express</p>
+              <p>75%</p>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 75%"></div>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <div class="skill-info">
+              <p><i class="fas fa-database"></i> MySQL & MongoDB</p>
+              <p>80%</p>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem">
+            <h3 style="margin-bottom: 1rem; font-size: 1.2rem">
+              Herramientas & Workflow
+            </h3>
+            <div class="hero-tech-stack" style="justify-content: flex-start">
+              <span><i class="fab fa-git-alt"></i> Git/GitHub</span>
+              <span><i class="fas fa-rocket"></i> Postman</span>
+              <span><i class="fas fa-tasks"></i> SCRUM</span>
+              <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
+              <span><i class="fas fa-lock"></i> JWT/Auth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section-padding">
+  <div class="container contact-container">
+    <h2 class="section-title">Contacto</h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+      ¿Tienes alguna pregunta o propuesta? Envíame un mensaje.
+    </p>
+
+    <form class="contact-form" action="https://formspree.io/f/mqaryvyp" method="POST">
+      
+      <div class="input-group">
+        <input type="text" id="nombre" name="nombre" required placeholder="Tu Nombre" minlength="5" maxlength="50" />
+      </div>
+      
+      <div class="input-group">
+        <input type="email" id="email" name="email" required placeholder="Tu Email" maxlength="50" minlength="5"/>
+      </div>
+      
+      <div class="input-group">
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          rows="5"
+          required
+          placeholder="Tu Mensaje"
+          minlength="5"
+          maxlength="500"
+        ></textarea>
+      </div>
+      
+      <button type="submit" class="btn-submit">
+        Enviar Mensaje <i class="fas fa-paper-plane"></i>
+      </button>
+      
+    </form>
+  </div>
+</section>
+
+    <footer>
+      <p>Diseñado y construido por Nicolas Paz © 2025</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
