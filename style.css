@@ -129,7 +129,7 @@ body {
 
 /* --- HERO SECTION --- */
 .hero-section {
-    padding-top: calc(var(--nav-height) + 4rem);
+    padding-top: calc(var(--nav-height) + 0.1rem);
     min-height: 90vh;
     display: flex;
     align-items: center;
