@@ -463,6 +463,57 @@ body {
     gap: 5px;
 }
 
+/* --- CAMBIOS PARA ESCRITORIO (Diseño Horizontal) --- */
+@media (min-width: 992px) {
+    
+    /* 1. Hacemos que la grilla sea de 1 sola columna para que las tarjetas se estiren */
+    .projects-grid {
+        grid-template-columns: 1fr; 
+        max-width: 1000px; /* Controlamos que no se estiren infinitamente */
+        margin: 0 auto;    /* Centramos el bloque */
+        gap: 3rem;         /* Más espacio entre proyecto y proyecto */
+    }
+
+    /* 2. Cambiamos la dirección de la tarjeta a fila (horizontal) */
+    .project-card {
+        flex-direction: row;
+        min-height: 350px; /* Altura mínima para que la imagen luzca bien */
+        align-items: stretch; /* Asegura que imagen y texto tengan misma altura */
+    }
+
+    /* 3. Ajustamos la imagen (Header) para ocupar el 55% del ancho */
+    .card-header {
+        width: 55%;
+        height: auto; /* Sobreescribimos el height: 200px original */
+        border-bottom: none; /* Quitamos borde inferior */
+        border-right: 1px solid rgba(255,255,255,0.05); /* Agregamos borde lateral */
+    }
+
+    /* 4. Ajustamos el cuerpo del texto para ocupar el 45% restante */
+    .card-body {
+        width: 45%;
+        justify-content: center; /* Centramos el contenido verticalmente */
+        padding: 2.5rem; /* Más espacio interno para que respire */
+    }
+
+    /* BONUS: Efecto Zig-Zag (Intercala imagen izq/der) */
+    /* Selecciona las tarjetas pares (2, 4, 6...) */
+    .project-card:nth-child(even) {
+        flex-direction: row-reverse; /* Invierte el orden: Texto - Imagen */
+    }
+
+    .project-card:nth-child(even) .card-header {
+        border-right: none;
+        border-left: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    /* Pequeño ajuste visual a la imagen para que cubra todo el alto */
+    .project-img {
+        height: 100%; 
+        object-fit: cover;
+    }
+}
+
 .badge-wip {
     background: rgba(245, 158, 11, 0.9);
 }
