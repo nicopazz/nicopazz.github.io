@@ -165,7 +165,8 @@ body {
 }
 
 .hero-text p {
-    color: var(--text-secondary);
+    /* CAMBIO: Color más claro para mejor legibilidad */
+    color: #e2e8f0; 
     font-size: 1.1rem;
     max-width: 600px;
     margin-bottom: 1.5rem;
@@ -235,7 +236,8 @@ body {
 
 .hero-tech-stack span {
     background: var(--bg-secondary);
-    border: 1px solid rgba(255,255,255,0.1);
+    /* CAMBIO: Borde un poco más visible */
+    border: 1px solid rgba(255,255,255,0.2); 
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -243,6 +245,19 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* CAMBIO: Ajuste para iconos de tecnología uniformes */
+.hero-tech-stack span i {
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
+    display: inline-block;
+}
+
+/* CAMBIO: Mayor separación para redes sociales */
+.social-links {
+    margin-top: 2.5rem; 
 }
 
 .social-links a {
@@ -315,6 +330,7 @@ body {
 
     .social-links {
         margin-bottom: 1rem;
+        margin-top: 2rem;
     }
 
     .hero-image-container {
