@@ -72,4 +72,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const observerOptions = {
+      threshold: 0.2 // Se activa cuando el 20% del elemento es visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Agrega la clase 'visible' que activa el CSS opacity: 1
+          entry.target.classList.add("visible");
+          
+          // Opcional: Dejar de observar una vez animado
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    // Seleccionamos todas las tarjetas y las observamos
+    const skillCards = document.querySelectorAll(".skill-card");
+    
+    skillCards.forEach((card, index) => {
+      // Agregamos un pequeño retraso escalonado (stagger) por CSS inline
+      // para que aparezcan una tras otra (100ms, 200ms, 300ms...)
+      card.style.transitionDelay = `${index * 150}ms`; 
+      observer.observe(card);
+    });
+  });

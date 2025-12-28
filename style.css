@@ -542,45 +542,110 @@ body {
     background: rgba(107, 114, 128, 0.9);
 }
 
-/* --- SKILLS SECTION --- */
+/* --- SKILLS SECTION (RENOVADO) --- */
 .section-darker {
     background-color: #08080c;
 }
 
-.skills-container {
-    max-width: 800px;
+/* Contenedor Grid Responsivo */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 }
 
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.progress-bar-bg {
-    width: 100%;
-    height: 10px;
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-bar-fill {
+/* Tarjeta individual */
+.skill-card {
+    background: var(--bg-secondary); /* Usa tu color de fondo secundario */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     height: 100%;
-    background: var(--gradient-main);
-    border-radius: 20px;
-    transform-origin: left;
-    animation: grow 1.5s ease-out forwards;
+    
+    /* Preparación para la animación (invisible al inicio) */
+    opacity: 0;
+    transform: translateY(30px);
 }
 
-@keyframes grow {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
+/* Estado visible (se agrega con JS) */
+.skill-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto Hover: Brillo neón usando tus variables */
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.2); /* Versión transparente de tu morado */
+}
+
+/* Encabezado de la tarjeta */
+.card-header {
+    /* Sobreescribiendo estilos previos de .card-header de proyectos para evitar conflictos */
+    height: auto !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.icon-header {
+    font-size: 1.8rem;
+    color: var(--accent-purple);
+    /* Un pequeño degradado al texto del icono si lo soporta el navegador */
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Contenedor de etiquetas */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* Las etiquetas (Pills) */
+.tech-tag {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tech-tag i {
+    color: var(--accent-blue); /* Iconos azules */
+    font-size: 1.1rem;
+}
+
+.tech-tag:hover {
+    background: rgba(59, 130, 246, 0.1); /* Fondo azul muy suave */
+    border-color: var(--accent-blue);
+    color: #fff;
+    transform: translateX(3px);
 }
 
 /* --- CONTACT SECTION --- */
@@ -683,3 +748,4 @@ footer {
         height: 350px;
     }
 }
+
