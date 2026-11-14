@@ -1,441 +1,251 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nicolás Paz - Porfolio</title>
-    <link rel="icon" type="image/png" href="./public/portf.png" />
-
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="#inicio" class="logo">Nicolas Paz</a>
-        <ul class="nav-links">
-          <li><a href="#">Sobre Mí</a></li>
-          <li><a href="#proyectos">Proyectos</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#certificaciones">Formación</a></li>
-          <li><a href="#contacto" class="btn-contact">Contacto</a></li>
-          
-        </ul>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1119">
+  <meta name="description" content="Nicolás Paz, desarrollador Full Stack en San Miguel de Tucumán. Proyectos con React, Next.js, TypeScript, Node.js y PostgreSQL. Conocé Archiva, UTNalert y mi experiencia.">
+  <meta name="author" content="Nicolás Paz">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Nicolás Paz | Desarrollador Full Stack">
+  <meta property="og:description" content="Software para resolver problemas reales. Proyectos, experiencia y tecnologías.">
+  <meta property="og:url" content="https://nicopazz.github.io/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://nicopazz.github.io/">
+  <link rel="icon" type="image/png" href="./public/portf.png">
+  <title>Nicolás Paz — Desarrollador Full Stack | Portfolio</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+    :root{color-scheme:dark;--bg:#0b1119;--bg2:#101a25;--panel:#111d28;--panel2:#172532;--ink:#eef6f8;--muted:#a4b5c2;--muted2:#7f96a7;--accent:#65e3cd;--accent2:#8dbbff;--line:rgba(192,216,231,.13);--container:1160px;--radius:22px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6;overflow-x:hidden}
+    body::before{content:"";pointer-events:none;position:absolute;left:0;top:0;width:100%;height:690px;background:radial-gradient(ellipse 62% 66% at 82% 12%,rgba(51,120,150,.16),transparent 72%);z-index:-1}
+    a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
+    ::selection{background:rgba(101,227,205,.32);color:#fff}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:5px}
+    .skip-link{position:absolute;top:-70px;left:14px;z-index:1000;background:var(--accent);color:#071419;padding:10px 16px;border-radius:9px}.skip-link:focus{top:14px}
+    .container{width:min(calc(100% - 48px),var(--container));margin-inline:auto}
+    .eyebrow{color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+    .section-heading{display:flex;gap:30px;align-items:end;justify-content:space-between;margin-bottom:34px}
+    .section-heading h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.045em;line-height:1.1;margin:10px 0}
+    .section-heading p{max-width:480px;color:var(--muted);margin:0}
+    .section{padding:95px 0}.section-muted{background:linear-gradient(180deg,rgba(22,34,47,.28),rgba(10,17,25,.05));border-block:1px solid var(--line)}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(11,17,25,.91);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+    .header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:12px;font-family:"Space Grotesk",sans-serif;font-size:1.06rem;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
+    .brand-mark{width:38px;height:38px;display:grid;place-items:center;color:#092126;background:var(--accent);border-radius:11px;font-size:.95rem}
+    .site-nav{display:flex;align-items:center;gap:27px}
+    .site-nav a{font-size:.89rem;font-weight:600;color:#b9cbd4;transition:color .2s}.site-nav a:hover{color:var(--accent)}
+    .site-nav .nav-cta{padding:10px 16px;border:1px solid rgba(101,227,205,.46);border-radius:11px;color:var(--accent)}
+    .menu-button{display:none;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 12px;border-radius:10px;cursor:pointer}
+    .hero{padding:102px 0 74px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(340px,.86fr);gap:66px;align-items:center}
+    .availability{display:inline-flex;align-items:center;gap:10px;color:#d3e3e7;background:rgba(101,227,205,.075);border:1px solid rgba(101,227,205,.23);border-radius:100px;padding:8px 14px;font-size:.79rem;font-weight:700}
+    .availability::before{content:"";width:8px;height:8px;flex:none;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(101,227,205,.13)}
+    .hero h1{font-family:"Space Grotesk",sans-serif;max-width:720px;font-size:clamp(3.25rem,5.6vw,5.3rem);letter-spacing:-.065em;line-height:1.065;margin:25px 0 20px}
+    .hero h1 span{color:var(--accent)}
+    .hero-intro{font-size:1.1rem;color:#b4c5d0;max-width:640px;margin:0 0 28px}
+    .hero-intro strong{color:var(--ink);font-weight:600}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:34px}
+    .hero-meta span{font-size:.79rem;color:#a9bdcb;border:1px solid var(--line);padding:5px 11px;border-radius:8px}
+    .button-row{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:47px;border-radius:11px;padding:11px 17px;font-size:.9rem;font-weight:700;transition:transform .2s,border-color .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent);color:#08232a}.btn-primary:hover{background:#8ff4df}
+    .btn-outline{border:1px solid rgba(191,216,230,.25);color:var(--ink);background:rgba(255,255,255,.02)}.btn-outline:hover{border-color:var(--accent)}
+    .hero-links{display:flex;flex-wrap:wrap;gap:20px;margin-top:27px}
+    .hero-links a{color:var(--muted);font-size:.84rem;font-weight:700;border-bottom:1px solid transparent}.hero-links a:hover{color:var(--accent);border-color:var(--accent)}
+    .hero-art{position:relative;min-width:0}.art-glow{position:absolute;inset:5% -4%;background:radial-gradient(ellipse,rgba(101,227,205,.17),transparent 68%);filter:blur(23px);pointer-events:none}
+    .feature-window{position:relative;overflow:hidden;border:1px solid rgba(175,220,227,.2);border-radius:22px;background:linear-gradient(155deg,#1b3040,#10202c 70%);box-shadow:0 26px 75px rgba(0,0,0,.25);padding:0 24px 26px}
+    .window-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:17px 0;color:#90acbc;font-size:.71rem;letter-spacing:.1em;text-transform:uppercase}
+    .window-dots{display:flex;gap:6px}.window-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#4b6573}
+    .feature-window .window-label{margin:28px 0 6px;color:var(--accent);letter-spacing:.17em;text-transform:uppercase;font-size:.72rem;font-weight:700}
+    .feature-window h2{font-size:clamp(2.2rem,3vw,3.15rem);font-family:"Space Grotesk",sans-serif;letter-spacing:-.065em;line-height:1.05;margin:0 0 12px}
+    .feature-window p{max-width:300px;color:#a6c1cb;font-size:.88rem;margin:0 0 28px}
+    .doc-rows{display:grid;gap:10px}.doc-row{display:flex;gap:12px;align-items:center;padding:12px;background:rgba(7,19,28,.36);border:1px solid rgba(189,224,228,.1);border-radius:10px}
+    .doc-icon{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:9px;background:rgba(101,227,205,.12);color:var(--accent);font-size:1rem}
+    .doc-lines{display:grid;gap:6px;flex:1}.doc-lines i{height:6px;width:77%;background:#4e6a79;border-radius:99px}.doc-lines i:last-child{width:49%;background:#314d5e}
+    .doc-rows .doc-row:nth-child(2) .doc-lines i:first-child{width:58%}.doc-rows .doc-row:nth-child(3) .doc-lines i:first-child{width:88%}
+    .window-foot{display:flex;gap:7px;flex-wrap:wrap;margin-top:23px}.window-foot span{border:1px solid rgba(101,227,205,.2);border-radius:8px;color:#9cdece;padding:6px 9px;font-size:.7rem;font-weight:700}
+    .proof-strip{margin-top:75px;padding-top:25px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .proof-item strong{display:block;font-family:"Space Grotesk";font-size:1.08rem;letter-spacing:-.03em}.proof-item small{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
+    .project-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:21px}
+    .project-card{grid-column:span 3;min-width:0;border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .24s,border-color .24s}
+    .project-card:hover{transform:translateY(-4px);border-color:rgba(101,227,205,.36)}
+    .project-card.small{grid-column:span 2}
+    .project-visual{height:215px;padding:27px;position:relative;overflow:hidden;display:flex;align-items:flex-end;border-bottom:1px solid var(--line)}
+    .project-visual::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+    .visual-archiva{background:radial-gradient(circle at 87% 20%,rgba(78,190,165,.25),transparent 48%),linear-gradient(120deg,#1c3b43,#142936)}
+    .visual-utn{background:radial-gradient(circle at 83% 13%,rgba(112,158,255,.23),transparent 52%),linear-gradient(125deg,#193750,#132739)}
+    .visual-zoco{background:radial-gradient(circle at 83% 17%,rgba(227,184,98,.2),transparent 49%),linear-gradient(125deg,#3b3329,#202b33)}
+    .visual-esmae{background:#1d2c38}.visual-vet{background:#153735}
+    .project-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.79;transition:transform .3s}.project-card:hover img{transform:scale(1.025)}
+    .project-visual img + .visual-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(8,20,28,.83))}
+    .visual-copy{z-index:1;position:relative}.visual-copy b{display:block;font-family:"Space Grotesk";font-size:clamp(2rem,3.2vw,3.25rem);letter-spacing:-.06em;line-height:1}.visual-copy small{display:block;margin-top:7px;color:#c3d9df;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase}
+    .project-chip{position:absolute;z-index:2;top:17px;left:20px;padding:5px 9px;border:1px solid rgba(214,244,244,.18);background:rgba(8,19,26,.45);border-radius:7px;color:#e0efed;font-size:.7rem;font-weight:700}
+    .project-content{padding:25px 26px 24px;display:flex;flex-direction:column;flex:1}
+    .project-content h3{font-family:"Space Grotesk";font-size:1.4rem;letter-spacing:-.04em;margin:0 0 8px}.project-content p{font-size:.9rem;color:var(--muted);margin:0 0 18px}
+    .tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}.tag-list span{font-size:.7rem;font-weight:700;color:#b8d1df;border:1px solid rgba(170,212,228,.15);padding:5px 8px;border-radius:7px;background:rgba(255,255,255,.017)}
+    .project-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:23px;padding-top:18px;border-top:1px solid var(--line)}
+    .project-links a{font-size:.81rem;color:var(--accent);font-weight:700}.project-links a:hover{text-decoration:underline;text-underline-offset:4px}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
+    .about-copy h2{font-family:"Space Grotesk";font-size:clamp(2.2rem,4vw,3.3rem);letter-spacing:-.05em;line-height:1.15;margin:14px 0 20px}
+    .about-copy p{font-size:1.02rem;color:var(--muted)}.about-copy p strong{color:var(--ink)}
+    .experience-card{padding:31px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+    .experience-top{display:flex;justify-content:space-between;gap:13px;flex-wrap:wrap;align-items:center}.experience-top h3{margin:0;font-family:"Space Grotesk";font-size:1.45rem;letter-spacing:-.04em}
+    .soft-pill{font-size:.75rem;font-weight:700;color:var(--accent);background:rgba(101,227,205,.1);padding:6px 11px;border-radius:99px}
+    .experience-card .subline{color:var(--accent2);font-size:.89rem;font-weight:700;margin:9px 0 16px}
+    .experience-card p{color:var(--muted);font-size:.9rem}.experience-card ul{color:#b8c9d5;padding-left:19px;margin:17px 0 0;font-size:.88rem}.experience-card li+li{margin-top:9px}
+    .stack-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .stack-card{border:1px solid var(--line);background:rgba(21,36,48,.65);padding:29px;border-radius:19px}
+    .stack-card .stack-symbol{display:grid;place-items:center;width:45px;height:45px;border-radius:11px;background:rgba(101,227,205,.11);font-size:1.05rem;color:var(--accent);font-family:"Space Grotesk";font-weight:700;margin-bottom:18px}
+    .stack-card h3{font-family:"Space Grotesk";font-size:1.2rem;letter-spacing:-.03em;margin:0 0 14px}.stack-card p{font-size:.89rem;color:var(--muted);margin:0;line-height:1.95}
+    .stack-note{margin-top:20px;color:var(--muted2);font-size:.81rem}
+    .education-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .education-item{padding:26px 29px;border-left:2px solid rgba(101,227,205,.7);background:var(--panel);border-radius:0 15px 15px 0}
+    .education-item small{color:var(--accent);font-size:.76rem;font-weight:700}.education-item h3{font-family:"Space Grotesk";letter-spacing:-.025em;font-size:1.19rem;margin:12px 0 6px}
+    .education-item p{color:var(--muted);margin:0;font-size:.86rem}
+    .contact-panel{border:1px solid rgba(101,227,205,.25);border-radius:24px;padding:53px 55px;background:radial-gradient(circle at 100% 0%,rgba(101,227,205,.11),transparent 42%),#132430;display:flex;justify-content:space-between;align-items:center;gap:25px}
+    .contact-panel h2{font-family:"Space Grotesk";font-size:clamp(2rem,4vw,3.3rem);line-height:1.14;letter-spacing:-.055em;margin:10px 0 13px}
+    .contact-panel p{color:#b8cbd3;max-width:570px;margin:0}.contact-actions{display:flex;gap:11px;flex-wrap:wrap;flex:none}
+    .site-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted2);font-size:.81rem}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-links{display:flex;gap:18px;flex-wrap:wrap}.footer-links a:hover{color:var(--accent)}
+    @media(max-width:1020px){.site-nav{gap:16px}.hero-grid{gap:35px;grid-template-columns:1.04fr .96fr}.hero h1{font-size:clamp(3rem,6vw,4.1rem)}.about-grid{gap:35px}.project-card.small{grid-column:span 3}}
+    @media(max-width:760px){.container{width:min(calc(100% - 36px),var(--container))}.header-inner{min-height:69px}.menu-button{display:inline-flex;align-items:center;gap:8px}.site-nav{display:none;position:absolute;left:0;right:0;top:100%;background:#101b26;border-bottom:1px solid var(--line);padding:18px;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 15px 20px rgba(0,0,0,.17)}.site-nav.open{display:flex}.site-nav a{padding:12px 10px}.site-nav .nav-cta{margin-top:8px;text-align:center}.hero{padding:59px 0 53px}.hero-grid{grid-template-columns:1fr;gap:42px}.hero h1{font-size:clamp(3rem,10.5vw,4.9rem)}.hero-intro{font-size:1rem}.hero-art{max-width:500px;width:100%;margin:auto}.proof-strip{margin-top:52px}.section{padding:65px 0}.section-heading{display:block;margin-bottom:26px}.section-heading p{margin-top:12px}.project-card,.project-card.small{grid-column:span 6}.project-visual{height:215px}.about-grid{grid-template-columns:1fr}.stack-grid{grid-template-columns:1fr}.education-grid{grid-template-columns:1fr}.contact-panel{display:block;padding:36px 25px}.contact-actions{margin-top:23px}.footer-inner{align-items:start;flex-direction:column}}
+    @media(max-width:470px){.brand{font-size:.95rem}.brand-mark{height:33px;width:33px}.hero h1{font-size:clamp(2.65rem,12vw,3.7rem)}.hero-meta{gap:7px}.proof-strip{grid-template-columns:1fr;gap:15px}.proof-item{padding-bottom:12px;border-bottom:1px solid var(--line)}.button-row>.btn{width:100%}.feature-window{padding-inline:17px}.project-content{padding:21px}.contact-actions .btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nicolás Paz","jobTitle":"Desarrollador Full Stack","url":"https://nicopazz.github.io/","sameAs":["https://github.com/nicopazz","https://www.linkedin.com/in/nicopazz/"],"homeLocation":{"@type":"Place","name":"San Miguel de Tucumán, Argentina"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Nicolás Paz, ir al inicio"><span class="brand-mark" aria-hidden="true">NP</span><span>Nicolás Paz<span style="color:var(--accent)">.</span></span></a>
+      <button type="button" class="menu-button" id="menu-toggle" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menú de navegación">Menú <span aria-hidden="true">☰</span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a><a href="#proyectos">Proyectos</a><a href="#experiencia">Experiencia</a><a href="#tecnologias">Tecnologías</a><a href="#formacion">Formación</a><a class="nav-cta" href="#contacto">Contacto ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <div class="availability">Abierto a oportunidades · Full Stack / Frontend / Backend</div>
+          <h1 id="hero-title">Hola, soy Nicolás.<br><span>Desarrollo software</span> para problemas reales.</h1>
+          <p class="hero-intro">Soy <strong>desarrollador Full Stack</strong> de San Miguel de Tucumán. Construyo aplicaciones web con <strong>React, Next.js, TypeScript y Node.js</strong>, y participo en un proyecto de digitalización documental donde conecto tecnología y procesos reales.</p>
+          <div class="hero-meta"><span>Argentina · Tucumán</span><span>UTN · Programación</span><span>Proyectos Full Stack</span></div>
+          <div class="button-row"><a class="btn btn-primary" href="#proyectos">Explorar proyectos <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="mailto:nicopazmalizia@gmail.com?subject=Contacto%20desde%20tu%20portfolio">Contactarme <span aria-hidden="true">✉</span></a></div>
+          <div class="hero-links"><a href="https://github.com/nicopazz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/nicopazz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="./public/CV_Nicolas_Paz_FullStackDeveloper.pdf" target="_blank" rel="noopener noreferrer">Ver CV (PDF) ↗</a></div>
+        </div>
+        <div class="hero-art" aria-label="Composición visual ilustrativa de Archiva">
+          <div class="art-glow"></div>
+          <div class="feature-window">
+            <div class="window-top"><span>Proyecto destacado / 01</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="window-label">Full Stack · Gestión documental</div>
+            <h2>Archiva<span style="color:var(--accent)">.</span></h2>
+            <p>Software relacionado con las necesidades de organización y gestión de documentación histórica.</p>
+            <div class="doc-rows" aria-hidden="true">
+              <div class="doc-row"><span class="doc-icon">▤</span><span class="doc-lines"><i></i><i></i></span><span style="color:var(--accent)">✓</span></div>
+              <div class="doc-row"><span class="doc-icon">▤</span><span class="doc-lines"><i></i><i></i></span><span style="color:var(--accent)">✓</span></div>
+              <div class="doc-row"><span class="doc-icon">▤</span><span class="doc-lines"><i></i><i></i></span><span style="color:#6e96a7">⋯</span></div>
+            </div>
+            <div class="window-foot"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span></div>
+          </div>
         </div>
       </div>
-    </nav>
-
-    <section id="inicio" class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-text">
-          <span class="badge">Disponible para trabajar</span>
-          <h1>Hola, soy <span class="text-gradient">Nicolas</span></h1>
-          <h2>Desarrollador Full-Stack</h2>
-          <p>
-            Soy un apasionado por la tecnología y el código. Me especializo en
-            construir experiencias web modernas y funcionales, aprendiendo cada
-            día nuevas herramientas. Actualmente cursando la Tecnicatura
-            Universitaria en Programación (UTN), complementando mi formación
-            práctica Full Stack con bases sólidas de ingeniería de software.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#proyectos" class="btn-hero primary"> Ver Proyectos </a>
-            <a
-              href="./public/CV_Nicolas_Paz_FullStackDeveloper.pdf"
-              class="btn-hero outline"
-              download
-            >
-              Descargar CV <i class="fas fa-download"></i>
-            </a>
-          </div>
-
-          <div class="hero-tech-stack">
-            <span><i class="fab fa-react"></i> React</span>
-            <span><i class="fab fa-node-js"></i> Node.js</span>
-            <span><i class="devicon-csharp-plain"></i> C# .NET</span>
-            <span><i class="fas fa-database"></i> MySQL</span>
-            <span><i class="fas fa-leaf"></i> MongoDB</span>
-          </div>
-
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/nicopazz/" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a href="https://github.com/nicopazz" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="mailto:nicopazmalizia@gmail.com"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="hero-image-container">
-          <div class="glow-effect"></div>
-          <img
-            src="public/Perfil_3.jpg"
-            alt="Foto de perfil"
-            class="profile-img"
-          />
-        </div>
+      <div class="container proof-strip" aria-label="Áreas de experiencia destacadas">
+        <div class="proof-item"><strong>Software aplicado</strong><small>Archiva · Gestión documental</small></div>
+        <div class="proof-item"><strong>Proyecto colaborativo</strong><small>UTNalert · Integrador UTN</small></div>
+        <div class="proof-item"><strong>Prueba técnica</strong><small>Automatización de datos · 48 horas</small></div>
       </div>
     </section>
-
-    <section id="proyectos" class="section-padding">
+    <section class="section section-muted" id="proyectos" aria-labelledby="projects-title">
       <div class="container">
-        <h2 class="section-title">Proyectos Destacados</h2>
-        <div class="projects-grid">
-          
-          <div class="project-card card-purple">
-            <div class="card-header">
-              <div
-                class="status-badge badge-success"
-                style="background-color: #25d366; color: white"
-              >
-                <i class="fas fa-check-circle"></i> FULL STACK
-              </div>
-              <img src="/public/esmae.png"Esmae" class="project-img" />
-            </div>
-
-            <div class="card-body">
-              <h3>Esmae Store</h3>
-              <p>
-                <strong>E-commerce Full Stack.</strong> Plataforma completa de
-                venta de espejos con panel de administración. <br /><br />
-                Incluye carrito de compras persistente, autenticación de
-                usuarios, gestión de productos en tiempo real y subida de
-                imágenes. Diseño <strong>Responsive</strong> con Tailwind CSS.
-              </p>
-
-              <div
-                class="tech-icons"
-                style="font-size: 1.2rem; display: flex; gap: 10px"
-              >
-                <i class="fab fa-react" title="Next.js 14"></i>
-
-                <i class="fab fa-js-square" title="TypeScript"></i>
-
-                <i class="fas fa-database" title="MySQL + Prisma"></i>
-
-                <i class="fab fa-css3-alt" title="Tailwind CSS"></i>
-              </div>
-
-              <div class="card-actions">
-                <a
-                  href="https://github.com/nicopazz/esmae"
-                  target="_blank"
-                  class="btn-card secondary"
-                >
-                  <i class="fab fa-github"></i> Código
-                </a>
-                <a
-                  href="https://esmae.vercel.app/"
-                  target="_blank"
-                  class="btn-card primary"
-                >
-                  <i class="fas fa-external-link-alt"></i> Demo
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-card card-blue">
-            <div class="card-header">
-              <div class="status-badge badge-beta">
-                <i class="fas fa-flask"></i> v1.0 Beta
-              </div>
-              <img
-                src="./public/rollingvet.png"
-                alt="RollingVet"
-                class="project-img"
-              />
-            </div>
-            <div class="card-body">
-              <h3>RollingVet</h3>
-              <p>
-                <strong>Sistema de Gestión Clínica & Dashboard.</strong>
-                <br /><br />
-                Plataforma integral (SPA) desarrollada con el stack MERN.
-                Incluye autenticación segura (JWT), roles y panel administrativo
-                CRUD. <br /><br />
-                🚧 <em>Refinando lógica de negocio y optimizando UX/UI.</em>
-              </p>
-              <div class="tech-icons">
-                <i class="fab fa-react" title="React"></i>
-                <i class="fab fa-node-js" title="Node.js"></i>
-                <i class="fas fa-database" title="MongoDB"></i>
-              </div>
-              <div class="card-actions">
-                <a
-                  href="https://github.com/nicopazz/rollingvet"
-                  target="_blank"
-                  class="btn-card secondary"
-                  ><i class="fab fa-github"></i> Código</a
-                >
-                <a
-                  href="https://rollingvet-tuc.netlify.app/"
-                  target="_blank"
-                  class="btn-card primary"
-                  ><i class="fas fa-external-link-alt"></i> Demo</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card card-red">
-            <div class="card-header">
-              <div class="status-badge badge-soon">
-                <i class="fas fa-lightbulb"></i> Concepto
-              </div>
-              <img
-                src="./public/CRIV.png"
-                alt="App"
-                class="project-img"
-              />
-            </div>
-            <div class="card-body">
-              <h3>CRIV Agency</h3>
-                <p>
-                  <strong>Landing Page</strong>
-                  <br /><br />
-                   Página corporativa de alto impacto desarrollada con Next.js 14, TypeScript y Tailwind CSS.
-                  Integra animaciones avanzadas con Framer Motion, arquitectura de componentes modulares
-                  y enfoque Mobile-First para máxima velocidad.<br /><br />
-                  🚀 <em>Optimizando performance, SEO técnico y puliendo la identidad visual (Light Mode).</em>
-                </p>
-              <div class="tech-icons">
-                <i class="fab fa-react" title="React"></i>
-                <i class="fab fa-js-square" title="TypeScript"></i> 
-                <i class="fab fa-css3-alt" title="Tailwind CSS"></i>
-              </div>
-              <div class="card-actions">
-                <a
-                  href="https://github.com/nicopazz/CRIV."
-                  target="_blank"
-                  class="btn-card secondary"
-                  ><i class="fab fa-github"></i> Código</a
-                >
-                <a
-                  href="https://criv.vercel.app/"
-                  target="_blank"
-                  class="btn-card primary"
-                  ><i class="fas fa-external-link-alt"></i> Demo</a
-                >
-              </div>
-            </div>
-          </div>
+        <div class="section-heading"><div><div class="eyebrow">01 / Trabajo seleccionado</div><h2 id="projects-title">Proyectos que muestran lo que construyo.</h2></div><p>Aplicaciones completas, integración de datos, interfaces y resolución de necesidades concretas. Repositorios públicos para explorar el código.</p></div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-visual visual-archiva"><span class="project-chip">PROYECTO DESTACADO</span><div class="visual-copy"><b>Archiva<span style="color:var(--accent)">.</span></b><small>Gestión documental</small></div></div>
+            <div class="project-content"><h3>Archiva</h3><p>Sistema Full Stack de gestión documental desarrollado a partir de necesidades vinculadas con un proyecto de digitalización histórica. Integra frontend, API y base de datos relacional.</p><div class="tag-list"><span>Next.js</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Prisma</span></div><div class="project-links"><a href="https://github.com/nicopazz/archiva" target="_blank" rel="noopener noreferrer" aria-label="Código frontend de Archiva en GitHub">Frontend ↗</a><a href="https://github.com/nicopazz/archiva-backend" target="_blank" rel="noopener noreferrer" aria-label="Código backend de Archiva en GitHub">Backend ↗</a></div></div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual visual-utn"><span class="project-chip">PROYECTO INTEGRADOR · EQUIPO</span><div class="visual-copy"><b>UTN<span style="color:#97baff">alert</span></b><small>Incidentes · Gestión · Mapas</small></div></div>
+            <div class="project-content"><h3>UTNalert</h3><p>Plataforma académica colaborativa para reportar y administrar incidentes. Incluye autenticación, formularios, mapa de ubicaciones y panel de gestión; el repositorio documenta módulos e integraciones opcionales de IA.</p><div class="tag-list"><span>React</span><span>TypeScript</span><span>Vite</span><span>Supabase</span><span>PostgreSQL</span></div><div class="project-links"><a href="https://github.com/nicopazz/UTNalert" target="_blank" rel="noopener noreferrer">Ver repositorio ↗</a></div></div>
+          </article>
+          <article class="project-card small">
+            <div class="project-visual visual-zoco"><span class="project-chip">PRUEBA TÉCNICA · 48H</span><div class="visual-copy"><b>Gestor de bares</b><small>Extracción · Normalización · Dashboard</small></div></div>
+            <div class="project-content"><h3>Sincronizador de locales</h3><p>Solución de una prueba técnica: datos de OpenStreetMap con Overpass, normalización asistida por Gemini, automatización y administración desde un dashboard.</p><div class="tag-list"><span>Next.js</span><span>Prisma</span><span>PostgreSQL</span><span>Overpass</span><span>Gemini</span></div><div class="project-links"><a href="https://github.com/nicopazz/prueba_tecnica_zoco" target="_blank" rel="noopener noreferrer">Código y evidencias ↗</a></div></div>
+          </article>
+          <article class="project-card small">
+            <div class="project-visual visual-esmae"><img src="./public/esmae.png" alt="Captura de pantalla del e-commerce Esmae Store" loading="lazy" width="800" height="450"><div class="visual-overlay"></div><span class="project-chip">E-COMMERCE</span><div class="visual-copy"><b>Esmae Store</b><small>Tienda online</small></div></div>
+            <div class="project-content"><h3>Esmae Store</h3><p>E-commerce con catálogo, carrito, autenticación y herramientas de administración. Interfaz responsive conectada a una base de datos relacional.</p><div class="tag-list"><span>Next.js</span><span>TypeScript</span><span>Prisma</span><span>MySQL</span></div><div class="project-links"><a href="https://github.com/nicopazz/esmae" target="_blank" rel="noopener noreferrer">Código ↗</a><a href="https://esmae.vercel.app/" target="_blank" rel="noopener noreferrer">Demo ↗</a></div></div>
+          </article>
+          <article class="project-card small">
+            <div class="project-visual visual-vet"><img src="./public/rollingvet.png" alt="Captura de pantalla del sistema veterinario RollingVet" loading="lazy" width="800" height="450"><div class="visual-overlay"></div><span class="project-chip">STACK MERN</span><div class="visual-copy"><b>RollingVet</b><small>Gestión veterinaria</small></div></div>
+            <div class="project-content"><h3>RollingVet</h3><p>Aplicación web con portal público y administración para una clínica veterinaria. Incluye gestión de turnos, autenticación y operaciones CRUD.</p><div class="tag-list"><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span></div><div class="project-links"><a href="https://github.com/nicopazz/RollingVet" target="_blank" rel="noopener noreferrer">Código ↗</a><a href="https://rollingvet-tuc.netlify.app/" target="_blank" rel="noopener noreferrer">Demo ↗</a></div></div>
+          </article>
         </div>
       </div>
     </section>
-
-    <section id="skills" class="section-padding section-darker">
+    <section class="section" id="experiencia" aria-labelledby="experience-title">
+      <div class="container about-grid">
+        <div class="about-copy"><div class="eyebrow">02 / Experiencia</div><h2 id="experience-title">Tecnología conectada con un proceso real.</h2><p>Mi experiencia en digitalización documental me permitió conocer de cerca necesidades de <strong>organización, trazabilidad y calidad de la información</strong>.</p><p>Esa experiencia es parte del contexto en el que desarrollé <strong>Archiva</strong>, combinando aprendizaje de software y conocimiento de una operación concreta.</p></div>
+        <article class="experience-card"><div class="experience-top"><h3>La Gráfica</h3><span class="soft-pill">Experiencia actual</span></div><div class="subline">Proyecto de digitalización · Archivo Histórico de Tucumán</div><p>Participo en tareas de procesamiento, catalogación, organización y control de calidad de documentación histórica patrimonial.</p><ul><li>Trabajo con documentación y procesos de preservación digital.</li><li>Uso de herramientas informáticas para organización y control documental.</li><li>Desarrollo de Archiva como proyecto de software relacionado con necesidades observadas en la gestión documental.</li></ul></article>
+      </div>
+    </section>
+    <section class="section section-muted" id="tecnologias" aria-labelledby="stack-title">
       <div class="container">
-        <h2 class="section-title">Mis Habilidades</h2>
-
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="card-header">
-              <i class="fas fa-laptop-code icon-header"></i>
-              <h3>Frontend Development</h3>
-            </div>
-            <div class="skill-tags">
-
-               <span class="tech-tag">
-                <i class="fab fa-js"></i> JavaScript (ES6+)
-              </span>
-
-              <span class="tech-tag">
-                <i class="fas fa-code"></i> TypeScript
-              </span>
-
-              <span class="tech-tag">
-                <i class="fab fa-react"></i> React.js
-              </span>
-
-              <span class="tech-tag">
-                <i class="fas fa-wind"></i> Tailwind CSS
-              </span>
-
-              <span class="tech-tag">
-                <i class="fab fa-html5"></i> HTML5 & CSS3
-              </span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="card-header">
-              <i class="fas fa-server icon-header"></i>
-              <h3>Backend & APIs</h3>
-            </div>
-            <div class="skill-tags">
-              <span class="tech-tag"
-                ><i class="fab fa-node"></i> Node.js & Express</span
-              >
-              <span class="tech-tag"
-                ><i class="fas fa-code"></i> C# / .NET</span
-              >
-              <span class="tech-tag"
-                ><i class="fas fa-lock"></i> JWT / Auth</span
-              >
-              <span class="tech-tag"
-                ><i class="fas fa-network-wired"></i> REST APIs</span
-              >
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="card-header">
-              <i class="fas fa-database icon-header"></i>
-              <h3>Base de Datos & Tools</h3>
-            </div>
-            <div class="skill-tags">
-              <span class="tech-tag"
-                ><i class="fas fa-database"></i> MongoDB</span
-              >
-              <span class="tech-tag"><i class="fas fa-table"></i> MySQL</span>
-              <span class="tech-tag"
-                ><i class="fab fa-git-alt"></i> Git & GitHub</span
-              >
-              <span class="tech-tag"
-                ><i class="fas fa-rocket"></i> Postman / Scrum</span
-              >
-            </div>
-          </div>
+        <div class="section-heading"><div><div class="eyebrow">03 / Herramientas</div><h2 id="stack-title">Tecnologías con las que trabajo.</h2></div><p>El stack principal se refleja en los repositorios. Distingo las herramientas de proyectos de los conocimientos adquiridos en la facultad.</p></div>
+        <div class="stack-grid">
+          <div class="stack-card"><div class="stack-symbol" aria-hidden="true">&lt;/&gt;</div><h3>Frontend</h3><p>JavaScript · TypeScript · React · Next.js · HTML · CSS · Tailwind CSS</p></div>
+          <div class="stack-card"><div class="stack-symbol" aria-hidden="true">{ }</div><h3>Backend y datos</h3><p>Node.js · Express · REST APIs · PostgreSQL · MySQL · MongoDB · Prisma · SQL Server</p></div>
+          <div class="stack-card"><div class="stack-symbol" aria-hidden="true">⌘</div><h3>Herramientas</h3><p>Git · GitHub · Docker · Postman · Supabase · Neon · Vercel · Render</p></div>
+        </div>
+        <p class="stack-note">Conocimientos académicos complementarios: C#, .NET, LINQ y ADO.NET, desarrollados durante la Tecnicatura Universitaria en Programación.</p>
+      </div>
+    </section>
+    <section class="section" id="formacion" aria-labelledby="education-title">
+      <div class="container"><div class="section-heading"><div><div class="eyebrow">04 / Formación</div><h2 id="education-title">Aprendizaje continuo, práctica concreta.</h2></div></div>
+        <div class="education-grid">
+          <div class="education-item"><small>2025 — Actualidad</small><h3>Tecnicatura Universitaria en Programación</h3><p>Universidad Tecnológica Nacional · Facultad Regional Tucumán</p></div>
+          <div class="education-item"><small>2024</small><h3>Desarrollo Web Full Stack</h3><p>Rolling Code School · Formación práctica en desarrollo web</p></div>
         </div>
       </div>
     </section>
-
-    <section id="certificaciones" class="section-padding">
-      <div class="container">
-        <h2 class="section-title">Formación & Certificaciones</h2>
-        
-        <div class="cert-grid">
-          <div class="cert-card">
-            <div class="cert-icon">
-              <i class="fas fa-university"></i>
-            </div>
-            <div class="cert-content">
-              <h3>Tecnicatura Universitaria en Programación</h3>
-              <p class="institution">UTN - Facultad Regional Tucumán</p>
-              <span class="cert-date"><i class="far fa-calendar-alt"></i> 2025 - Presente</span>
-              <p class="cert-desc">
-                Formación académica en ingeniería de software, algoritmos y bases de datos.
-                Proyecto final programado para 2027.
-              </p>
-            </div>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-icon">
-              <i class="fas fa-laptop-code"></i>
-            </div>
-            <div class="cert-content">
-              <h3>Full Stack Web Developer</h3>
-              <p class="institution">Rolling Code School</p>
-              <span class="cert-date"><i class="far fa-calendar-alt"></i> 2024</span>
-              <p class="cert-desc">
-                Bootcamp intensivo (+700hs) enfocado en el stack MERN (MongoDB, Express, React, Node.js).
-                Experiencia práctica simulando entorno laboral real.
-              </p>
-              
-              <a 
-                href="https://certs.rollingcodeschool.com/bmljb3Bhem1hbGl6aWFAZ21haWwuY29t-1767385973417-1.png" 
-                target="_blank" 
-                class="btn-card secondary"
-                style="margin-top: 1rem; width: fit-content; padding: 0.5rem 1.2rem; font-size: 0.85rem;"
-              >
-                <i class="fas fa-external-link-alt"></i> Ver Certificado
-              </a>
-
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="section" id="contacto" aria-labelledby="contact-title">
+      <div class="container"><div class="contact-panel"><div><div class="eyebrow">05 / Contacto</div><h2 id="contact-title">¿Construimos algo juntos?</h2><p>Estoy buscando oportunidades como desarrollador Full Stack, Frontend o Backend. Podés escribirme directamente o revisar mi trabajo en GitHub.</p></div><div class="contact-actions"><a class="btn btn-primary" href="mailto:nicopazmalizia@gmail.com?subject=Oportunidad%20laboral%20-%20Nicolas%20Paz">Enviar email ↗</a><a class="btn btn-outline" href="https://www.linkedin.com/in/nicopazz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div>
     </section>
-
-    <section id="contacto" class="section-padding">
-      <div class="container contact-container">
-        <h2 class="section-title">Contacto</h2>
-        <p
-          style="
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-          "
-        >
-          ¿Tienes alguna pregunta o propuesta? Envíame un mensaje.
-        </p>
-
-        <form
-          class="contact-form"
-          action="https://formspree.io/f/mqaryvyp"
-          method="POST"
-        >
-          <div class="input-group">
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              required
-              placeholder="Tu Nombre"
-              minlength="5"
-              maxlength="50"
-            />
-          </div>
-
-          <div class="input-group">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="Tu Email"
-              maxlength="50"
-              minlength="5"
-            />
-          </div>
-
-          <div class="input-group">
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="5"
-              required
-              placeholder="Tu Mensaje"
-              minlength="5"
-              maxlength="500"
-            ></textarea>
-          </div>
-
-          <button type="submit" class="btn-submit">
-            Enviar Mensaje <i class="fas fa-paper-plane"></i>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <p>Diseñado y construido por Nicolas Paz © 2025</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="script.js"></script>
-  </body>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><span>© <span id="year">2026</span> Nicolás Paz · San Miguel de Tucumán, Argentina</span><div class="footer-links"><a href="https://github.com/nicopazz" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/nicopazz/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:nicopazmalizia@gmail.com">Email</a><a href="#inicio">Volver arriba ↑</a></div></div></footer>
+  <script>
+    (() => {
+      const menuButton = document.getElementById("menu-toggle");
+      const nav = document.getElementById("site-navigation");
+      const closeMenu = () => {
+        nav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Abrir menú de navegación");
+      };
+      menuButton.addEventListener("click", () => {
+        const willOpen = !nav.classList.contains("open");
+        nav.classList.toggle("open", willOpen);
+        menuButton.setAttribute("aria-expanded", String(willOpen));
+        menuButton.setAttribute("aria-label", willOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación");
+      });
+      nav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && nav.classList.contains("open")) {
+          closeMenu();
+          menuButton.focus();
+        }
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) closeMenu();
+      });
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    })();
+  </script>
+</body>
 </html>
