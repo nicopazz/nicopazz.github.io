@@ -840,3 +840,33 @@ footer {
     }
 }
 
+/* Capturas reales de proyectos: preservar el encuadre en cualquier dispositivo.
+   No altera colores, tipografía ni maquetación de otras secciones. */
+.project-screenshot .card-header {
+    background-color: #0d1525;
+}
+
+.project-screenshot .project-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.project-screenshot:hover .project-img {
+    transform: none;
+}
+
+@media (max-width: 991px) {
+    .project-screenshot .card-header {
+        height: auto;
+        aspect-ratio: 8 / 5;
+    }
+}
+
+@media (max-width: 420px) {
+    .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
