@@ -11,7 +11,7 @@ function setMotion(state){
   root.classList.toggle('motion-off',!motion);
   motionButton.setAttribute('aria-pressed',String(motion));
   motionButton.querySelector('span').textContent=motion?'ANIMACIONES ACTIVADAS':'ANIMACIONES DESACTIVADAS';
-  motionButton.setAttribute('aria-label',reduceQuery.matches?'Movimiento reducido del sistema: animaciones desactivadas':motion?'Desactivar animaciones':'Activar animaciones');
+  motionButton.setAttribute('aria-label',reduceQuery.matches?'Animaciones desactivadas. Movimiento reducido del sistema':motion?'Animaciones activadas. Desactivar animaciones':'Animaciones desactivadas. Activar animaciones');
   if(!motion){
     $$('[data-reveal]').forEach(e=>e.classList.add('shown'));
     $$('[data-tilt]').forEach(field=>['--mx','--my','--rx','--ry'].forEach(key=>field.style.removeProperty(key)));

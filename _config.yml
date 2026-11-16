@@ -1,0 +1,13 @@
+# Excluir material de trabajo del sitio generado por GitHub Pages.
+exclude:
+  - experimental
+  - referencias
+  - verification
+  - .local-backups
+  - .impeccable
+  - DESIGN.md
+  - REVISION_LOCAL.md
+  - INTEGRACION_PORTFOLIO.md
+  - PULIDO_VISUAL_FINAL.md
+  - REFINAMIENTO_UX_UI.md
+  - REVISION_CINEMATICA.md

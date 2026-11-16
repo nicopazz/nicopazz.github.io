@@ -1,0 +1,21 @@
+# Material de trabajo y verificaciones locales.
+/experimental/
+/referencias/
+/verification/
+/.local-backups/
+/.impeccable/
+/DESIGN.md
+/REVISION_LOCAL.md
+/INTEGRACION_PORTFOLIO.md
+/PULIDO_VISUAL_FINAL.md
+/REFINAMIENTO_UX_UI.md
+/REVISION_CINEMATICA.md
+
+# Dependencias, configuración local y archivos temporales.
+/node_modules/
+/.vscode/
+.env
+.env.*
+*.log
+Thumbs.db
+.DS_Store
