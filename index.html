@@ -16,10 +16,10 @@
     <meta property="og:image:alt" content="Retrato de Nicolás Paz" />
     <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/png" href="./public/portf.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preload" href="public/fonts/poppins-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="public/fonts/poppins-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="public/fonts/poppins.css" />
+    <link rel="stylesheet" href="public/icons/icons.css" />
     <link rel="stylesheet" href="style.css?v=20261116-produccion" />
     <link rel="stylesheet" href="cinematic.css" />
     <link rel="stylesheet" href="portfolio.css" />
@@ -37,7 +37,6 @@
         "knowsAbout": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "PostgreSQL", "Prisma"]
       }
     </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 <body>
 <script>document.documentElement.classList.replace("no-js", "js");</script>
@@ -93,7 +92,7 @@
                   <li>Next.js</li><li>TypeScript</li><li>Node.js</li><li>Express</li><li>PostgreSQL</li><li>Prisma</li>
                 </ul>
                 <a class="scene-link" href="proyectos/archiva.html">Ver caso de estudio <i class="fas fa-arrow-right" aria-hidden="true"></i><span class="sr-only"> de Archiva</span></a>
-              </div><div class="visual-field" style="--capture-ratio: 1240 / 594" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">ARCHIVA / CAPTURA REAL</span></div><div class="capture-viewport capture-viewport--archiva"><img class="project-capture" width="1280" height="800" src="public/archiva-portfolio.webp" alt="Panel de gestión documental de Archiva" loading="eager" decoding="async"></div></div><div class="preview-label">GESTIÓN DOCUMENTAL</div><div class="float-chip"><div class="fc-top">PROYECTO / 01</div><div class="fc-bottom">Inventario · Catalogación ↗</div></div><a class="capture-expand" href="public/archiva-portfolio.webp" data-capture="Archiva" aria-label="Ampliar captura de Archiva"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
+              </div><div class="visual-field" style="--capture-ratio: 1240 / 594" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">ARCHIVA / CAPTURA REAL</span></div><div class="capture-viewport capture-viewport--archiva"><img class="project-capture" width="1280" height="800" src="public/archiva-portfolio.webp" alt="Panel de gestión documental de Archiva" loading="lazy" decoding="async"></div></div><div class="preview-label">GESTIÓN DOCUMENTAL</div><div class="float-chip"><div class="fc-top">PROYECTO / 01</div><div class="fc-bottom">Inventario · Catalogación ↗</div></div><a class="capture-expand" href="public/archiva-portfolio.webp" data-capture="Archiva" aria-label="Ampliar captura de Archiva"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
  <article class="scene scene-2" data-scene="1" id="chapter-2" aria-labelledby="scene-title-1"><div class="scene-layout"><div class="scene-copy"><div class="scene-num">02 / 03 — PROYECTOS DESTACADOS</div><h3 class="scene-title" id="scene-title-1">UTNalert<span class="dot">.</span></h3>
                 <p class="scene-caption">UTN · Proyecto colaborativo</p>
 
@@ -103,7 +102,7 @@
                   <li>React</li><li>TypeScript</li><li>Vite</li><li>Supabase</li><li>PostgreSQL</li>
                 </ul>
                 <a class="scene-link" href="proyectos/utnalert.html">Ver caso de estudio <i class="fas fa-arrow-right" aria-hidden="true"></i><span class="sr-only"> de UTNalert</span></a>
-              </div><div class="visual-field" style="--capture-ratio: 1240 / 592" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">UTNALERT / CAPTURA REAL</span></div><div class="capture-viewport capture-viewport--utnalert"><img class="project-capture" width="1280" height="800" src="public/utnalert-portfolio.webp" alt="Interfaz de UTNalert para reportar incidentes" loading="eager" decoding="async"></div></div><div class="preview-label">PLATAFORMA UNIVERSITARIA</div><div class="float-chip"><div class="fc-top">PROYECTO / 02</div><div class="fc-bottom">Formulario · Mapa · Panel ↗</div></div><a class="capture-expand" href="public/utnalert-portfolio.webp" data-capture="UTNalert" aria-label="Ampliar captura de UTNalert"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
+              </div><div class="visual-field" style="--capture-ratio: 1240 / 592" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">UTNALERT / CAPTURA REAL</span></div><div class="capture-viewport capture-viewport--utnalert"><img class="project-capture" width="1280" height="800" src="public/utnalert-portfolio.webp" alt="Interfaz de UTNalert para reportar incidentes" loading="lazy" decoding="async"></div></div><div class="preview-label">PLATAFORMA UNIVERSITARIA</div><div class="float-chip"><div class="fc-top">PROYECTO / 02</div><div class="fc-bottom">Formulario · Mapa · Panel ↗</div></div><a class="capture-expand" href="public/utnalert-portfolio.webp" data-capture="UTNalert" aria-label="Ampliar captura de UTNalert"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
  <article class="scene scene-3" data-scene="2" id="chapter-3" aria-labelledby="scene-title-2"><div class="scene-layout"><div class="scene-copy"><div class="scene-num">03 / 03 — PROYECTOS DESTACADOS</div><h3 class="scene-title scene-title-long" id="scene-title-2">Gestor de<br>bares<span class="dot">.</span></h3>
                 <p class="scene-caption">Prueba técnica · 48 horas</p>
 
@@ -113,7 +112,7 @@
                   <a class="text-link" href="https://github.com/nicopazz/prueba_tecnica_zoco" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Código<span class="sr-only"> del gestor de bares (abre en una pestaña nueva)</span></a>
                   <a class="text-link" href="https://github.com/nicopazz/prueba_tecnica_zoco/tree/main/evidencias" target="_blank" rel="noopener noreferrer">Evidencias <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="sr-only"> del gestor de bares (abre en una pestaña nueva)</span></a>
                 </div>
-              </div><div class="visual-field" style="--capture-ratio: 1200 / 839" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">GESTOR DE BARES / CAPTURA REAL</span></div><div class="capture-viewport"><img class="project-capture" width="1200" height="839" src="public/gestor-bares-portfolio.jpg" alt="Panel del gestor de bares con locales y acciones de administración" loading="eager" decoding="async"></div></div><div class="preview-label">AUTOMATIZACIÓN DE DATOS</div><div class="float-chip"><div class="fc-top">PROYECTO / 03</div><div class="fc-bottom">Overpass · Gemini · Prisma ↗</div></div><a class="capture-expand" href="public/gestor-bares-portfolio.jpg" data-capture="Gestor de Bares" aria-label="Ampliar captura de Gestor de Bares"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
+              </div><div class="visual-field" style="--capture-ratio: 1200 / 839" data-tilt><div class="interface-camera"><div class="interface-glass"><div class="window-chrome" aria-hidden="true"><i class="w-dot"></i><i class="w-dot"></i><i class="w-dot"></i><span class="window-name">GESTOR DE BARES / CAPTURA REAL</span></div><div class="capture-viewport"><img class="project-capture" width="1200" height="839" src="public/gestor-bares-portfolio.jpg" alt="Panel del gestor de bares con locales y acciones de administración" loading="lazy" decoding="async"></div></div><div class="preview-label">AUTOMATIZACIÓN DE DATOS</div><div class="float-chip"><div class="fc-top">PROYECTO / 03</div><div class="fc-bottom">Overpass · Gemini · Prisma ↗</div></div><a class="capture-expand" href="public/gestor-bares-portfolio.jpg" data-capture="Gestor de Bares" aria-label="Ampliar captura de Gestor de Bares"><i class="fas fa-expand" aria-hidden="true"></i> Ampliar captura</a></div></div></div></article>
  <div class="scene-counter" aria-hidden="true"><b id="currentScene">01</b> / 03 — PROYECTO ACTUAL</div><div class="scene-timeline" role="group" aria-label="Navegación de proyectos"><button type="button" class="chapter-dot" data-goto-scene="0" aria-label="01. Ver proyecto Archiva" aria-current="true">01</button><button type="button" class="chapter-dot" data-goto-scene="1" aria-label="02. Ver proyecto UTNalert" aria-current="false">02</button><button type="button" class="chapter-dot" data-goto-scene="2" aria-label="03. Ver proyecto Gestor de Bares" aria-current="false">03</button></div>
  </div></div>
  <div class="container legacy-content extra-work" data-reveal><h3 class="other-projects-title">Más proyectos</h3>
@@ -153,7 +152,7 @@
         </div><div class="max work-outro"><a class="more-projects" href="https://github.com/nicopazz?tab=repositories" target="_blank" rel="noopener noreferrer">MÁS PROYECTOS EN GITHUB ↗</a></div>
 </section>
 <section class="manifesto" id="manifesto"><div class="max manifesto-inner"><div class="eyebrow" data-reveal>/// MÁS ALLÁ DE LA INTERFAZ</div><h2 data-reveal>IDEAS QUE<br><span>SE CONVIERTEN</span><br>EN SOFTWARE.</h2><p data-reveal>Me interesa entender el proceso detrás de cada necesidad, construir una solución y mejorarla hasta que sea clara, útil y mantenible.</p></div></section>
-<section id="experiencia" class="about" aria-labelledby="about-heading"><div class="max about-layout"><div class="portrait-stage" id="portraitStage" data-reveal><div class="portrait-aura" aria-hidden="true"></div><div class="portrait-window" id="portraitWindow"><img src="public/Perfil_3.png" alt="Retrato profesional de Nicolás Paz" loading="lazy" width="1086" height="1448"><div class="portrait-id"><span>NP / LA PERSONA DETRÁS DEL CÓDIGO</span><span>001</span></div></div><div class="portrait-cross" aria-hidden="true">+</div></div><div class="about-copy" data-reveal><h2 class="about-title" id="about-heading">EXPERIENCIA<br><em>Y CONTEXTO.</em></h2><div class="experience-list">
+<section id="experiencia" class="about" aria-labelledby="about-heading"><div class="max about-layout"><div class="portrait-stage" id="portraitStage" data-reveal><div class="portrait-aura" aria-hidden="true"></div><div class="portrait-window" id="portraitWindow"><img src="public/perfil-1086.webp" srcset="public/perfil-540.webp 540w, public/perfil-1086.webp 1086w" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1200px) 40vw, 510px" decoding="async" alt="Retrato profesional de Nicolás Paz" loading="lazy" width="1086" height="1448"><div class="portrait-id"><span>NP / LA PERSONA DETRÁS DEL CÓDIGO</span><span>001</span></div></div><div class="portrait-cross" aria-hidden="true">+</div></div><div class="about-copy" data-reveal><h2 class="about-title" id="about-heading">EXPERIENCIA<br><em>Y CONTEXTO.</em></h2><div class="experience-list">
             <article class="experience-entry">
               <p class="entry-date"><time datetime="2026-05">Mayo <span class="experience-year">2026</span></time> <span class="experience-range-end">— Actualidad</span></p>
               <div>
@@ -257,7 +256,7 @@
     <button type="button" class="viewer-close" autofocus><i class="fas fa-xmark" aria-hidden="true"></i> Cerrar</button>
   </header>
   <div class="capture-viewer-image" tabindex="0" role="region" aria-label="Captura ampliada; usá las flechas para desplazarte al verla al 100 %">
-    <img id="captureFullImage" src="public/archiva-portfolio.webp" alt="Captura de Archiva" width="1280" height="800" decoding="async">
+    <img id="captureFullImage" src="public/archiva-portfolio.webp" loading="lazy" alt="Captura de Archiva" width="1280" height="800" decoding="async">
   </div>
   <footer class="capture-viewer-footer">
     <p id="captureViewerHelp">Captura completa. Podés verla al 100 % y desplazarte para leer los detalles.</p>

@@ -1,10 +1,11 @@
-// Port of referencias/index_cinematic.html; see README.md for adaptations.
+// Experiencia cinematográfica progresiva; no depende de bibliotecas externas.
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
 const reduceQuery=matchMedia('(prefers-reduced-motion: reduce)');let motion=!reduceQuery.matches;
 const root=document.documentElement,topbar=$('#topbar'),progress=$('#progress'),scrollStory=$('#storyScroll'),pin=$('#storyPin'),scenes=$$('.scene'),dots=$$('[data-goto-scene]');
 const motionButton=$('#motionButton'),wipe=$('#wipe'),navLinks=$('#navLinks'),menuButton=$('#menuButton');
+const chapter=$('#chapter'),chapterLines=$$('.chapter-line'),contact=$('#contacto');
 let resumeHalo=()=>{};
 function setMotion(state){
   motion=Boolean(state)&&!reduceQuery.matches;
@@ -17,6 +18,11 @@ function setMotion(state){
     $$('[data-tilt]').forEach(field=>['--mx','--my','--rx','--ry'].forEach(key=>field.style.removeProperty(key)));
     targetX=targetY=mX=mY=0;
     wipe.className='wipe';transitioning=false;
+    chapterLines.forEach(line=>line.style.removeProperty('--chapter-x'));
+    contact.style.removeProperty('--contact-shift');
+    $('#portraitWindow').style.removeProperty('--portrait-r');
+    $('#portraitWindow').style.removeProperty('--portrait-x');
+    stopOrb();
   }else if(sphereVisible) startOrb();
   sceneInitialized=false;updateScroll();resumeHalo();
   if(ctx&&!motion) drawSphere(true);
@@ -45,6 +51,7 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   if(menuViewport.matches){const target=$(a.getAttribute('href'));target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true})}
 }));
 topbar.addEventListener('keydown',e=>{if(e.key==='Escape'&&menuButton.getAttribute('aria-expanded')==='true'){e.preventDefault();setMenuOpen(false,true)}});
+topbar.addEventListener('focusout',e=>{if(!topbar.contains(e.relatedTarget))setMenuOpen(false)});
 document.addEventListener('click',e=>{if(!e.composedPath().includes(topbar))setMenuOpen(false)});
 menuViewport.addEventListener('change',arrangeMenu);
 arrangeMenu();
@@ -68,7 +75,7 @@ let scrollTarget=null,transitioning=false;
 $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const hash=a.getAttribute('href');const target=document.getElementById(hash.slice(1));if(!target||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;if(!motion||isMobile()){return}e.preventDefault();if(transitioning)return;transitioning=true;wipe.className='wipe enter';setTimeout(()=>{if(!motion){wipe.className='wipe';transitioning=false;return}target.scrollIntoView({behavior:'instant',block:'start'});history.pushState(null,'',hash);target.setAttribute('tabindex','-1');target.focus({preventScroll:true});wipe.className='wipe exit';setTimeout(()=>{wipe.className='wipe';transitioning=false},580)},420)}));
 if('IntersectionObserver' in window){const io=new IntersectionObserver(items=>{items.forEach(({target,isIntersecting})=>{if(isIntersecting){target.classList.add('shown');io.unobserve(target)}})},{threshold:.08,rootMargin:'0px 0px -15px 0px'});$$('[data-reveal]').forEach(e=>{if(motion)io.observe(e);else e.classList.add('shown')})}else $$('[data-reveal]').forEach(e=>e.classList.add('shown'));
 function clock(){try{$('#localClock').textContent=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Tucuman',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date())+' / HORA LOCAL · ARG'}catch{}}clock();setInterval(clock,60000);
-let currentIndex=0,sceneInitialized=false,scrollPending=false;const hues=['rgba(139,92,246,.21)','rgba(59,130,246,.20)','rgba(59,130,246,.16)'];
+let currentIndex=0,sceneInitialized=false,scrollPending=false,continuousLayout=null;const hues=['rgba(139,92,246,.21)','rgba(59,130,246,.20)','rgba(59,130,246,.16)'];
 function changeScene(n){
   if(sceneInitialized&&n===currentIndex&&scenes[n].classList.contains('is-active'))return;
   sceneInitialized=true;currentIndex=n;
@@ -83,18 +90,52 @@ function changeScene(n){
   $('#currentScene').textContent=String(n+1).padStart(2,'0');
   pin.style.setProperty('--aura',hues[n]);
 }
-function updateSceneScroll(){
-  if(isMobile()||isShortViewport()||!motion){scenes.forEach(scene=>{scene.removeAttribute('aria-hidden');scene.inert=false;scene.querySelectorAll('a').forEach(a=>a.removeAttribute('tabindex'))});sceneInitialized=false;return}
-  let range=scrollStory.offsetHeight-innerHeight;
-  let top=scrollStory.getBoundingClientRect().top;
+function updateSceneScroll(story){
+  const continuous=isMobile()||isShortViewport()||!motion;
+  if(continuous){if(continuousLayout!==true){scenes.forEach(scene=>{scene.removeAttribute('aria-hidden');scene.inert=false;scene.querySelectorAll('a').forEach(a=>a.removeAttribute('tabindex'))});sceneInitialized=false}continuousLayout=true;return}
+  continuousLayout=false;
+  const {range,top}=story;
   let t=Math.min(.9999,Math.max(0,-top/Math.max(1,range)));
   changeScene(Math.min(2,Math.floor(t*3)));
 }
-function updateScroll(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';topbar.classList.toggle('is-scrolled',scrollY>15);updateSceneScroll();const chap=$('#chapter').getBoundingClientRect();if(motion&&!isMobile()&&chap.top<innerHeight&&chap.bottom>0){const v=(innerHeight/2-(chap.top+chap.height/2))/innerHeight;$$('.chapter-line').forEach((el,i)=>el.style.setProperty('--chapter-x',Math.max(-75,Math.min(75,v*65*(i===0?1:-1)))+'px'))}const contact=$('#contacto').getBoundingClientRect();if(contact.top<innerHeight&&contact.bottom>0)$('#contacto').style.setProperty('--contact-shift',Math.max(-70,Math.min(70,(innerHeight-contact.top)*.09))+'px')}
+function updateScroll(){
+  // Todas las mediciones preceden a las escrituras para no forzar layouts intermedios.
+  const max=root.scrollHeight-innerHeight;
+  const story=isMobile()||isShortViewport()||!motion?null:{range:scrollStory.offsetHeight-innerHeight,top:scrollStory.getBoundingClientRect().top};
+  const chap=motion&&!isMobile()?chapter.getBoundingClientRect():null;
+  const contactRect=motion?contact.getBoundingClientRect():null;
+  progress.style.transform=`scaleX(${max>0?scrollY/max:0})`;
+  topbar.classList.toggle('is-scrolled',scrollY>15);
+  updateSceneScroll(story);
+  if(chap&&chap.top<innerHeight&&chap.bottom>0){const v=(innerHeight/2-(chap.top+chap.height/2))/innerHeight;chapterLines.forEach((el,i)=>el.style.setProperty('--chapter-x',Math.max(-75,Math.min(75,v*65*(i===0?1:-1)))+'px'))}
+  if(contactRect&&contactRect.top<innerHeight&&contactRect.bottom>0)contact.style.setProperty('--contact-shift',Math.max(-70,Math.min(70,(innerHeight-contactRect.top)*.09))+'px');
+}
 function requestScroll(){if(scrollPending)return;scrollPending=true;requestAnimationFrame(()=>{updateScroll();scrollPending=false})}window.addEventListener('scroll',requestScroll,{passive:true});window.addEventListener('resize',requestScroll,{passive:true});updateScroll();
 dots.forEach((btn,i)=>btn.addEventListener('click',()=>{if(isMobile()||isShortViewport()||!motion){scenes[i].scrollIntoView({behavior:motion?'smooth':'instant',block:'start'});return}const start=scrollStory.getBoundingClientRect().top+scrollY,range=scrollStory.offsetHeight-innerHeight;window.scrollTo({top:start+(i+.5)/3*range,behavior:motion?'smooth':'instant'})}));
-// Slow parallax cameras, intentionally capped to subtle angles.
-if(matchMedia('(pointer:fine)').matches){$$('[data-tilt]').forEach(field=>{field.addEventListener('pointermove',e=>{if(!motion)return;const r=field.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;field.style.setProperty('--mx',(x*20).toFixed(2)+'px');field.style.setProperty('--my',(y*16).toFixed(2)+'px');field.style.setProperty('--rx',(x*6).toFixed(2)+'deg');field.style.setProperty('--ry',(-y*5).toFixed(2)+'deg')},{passive:true});field.addEventListener('pointerleave',()=>{field.style.setProperty('--mx','0px');field.style.setProperty('--my','0px');field.style.setProperty('--rx','0deg');field.style.setProperty('--ry','0deg')})});const ps=$('#portraitStage');ps.addEventListener('pointermove',e=>{if(!motion)return;const r=ps.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$('#portraitWindow').style.setProperty('--portrait-r',(-x*8).toFixed(1)+'deg');$('#portraitWindow').style.setProperty('--portrait-x',(y*7).toFixed(1)+'deg')});ps.addEventListener('pointerleave',()=>{$('#portraitWindow').style.setProperty('--portrait-r','5deg');$('#portraitWindow').style.setProperty('--portrait-x','0deg')});let tx=-900,ty=-900,px=-900,py=-900,haloRequested=false;
+// Como máximo una lectura de geometría y una actualización por cuadro.
+function trackPointer(element,render,reset){
+  let frame=0,position;
+  element.addEventListener('pointermove',event=>{
+    if(!motion||event.pointerType==='touch')return;
+    position={x:event.clientX,y:event.clientY};
+    if(!frame)frame=requestAnimationFrame(()=>{
+      frame=0;if(!motion||!position)return;
+      const rect=element.getBoundingClientRect();
+      render((position.x-rect.left)/rect.width-.5,(position.y-rect.top)/rect.height-.5);
+    });
+  },{passive:true});
+  element.addEventListener('pointerleave',()=>{cancelAnimationFrame(frame);frame=0;position=null;reset()});
+}
+if(matchMedia('(pointer:fine)').matches){
+  $$('[data-tilt]').forEach(field=>trackPointer(field,(x,y)=>{
+    field.style.setProperty('--mx',(x*20).toFixed(2)+'px');field.style.setProperty('--my',(y*16).toFixed(2)+'px');
+    field.style.setProperty('--rx',(x*6).toFixed(2)+'deg');field.style.setProperty('--ry',(-y*5).toFixed(2)+'deg');
+  },()=>['--mx','--my','--rx','--ry'].forEach(key=>field.style.removeProperty(key))));
+  const portrait=$('#portraitWindow');
+  trackPointer($('#portraitStage'),(x,y)=>{
+    portrait.style.setProperty('--portrait-r',(-x*8).toFixed(1)+'deg');portrait.style.setProperty('--portrait-x',(y*7).toFixed(1)+'deg');
+  },()=>{portrait.style.removeProperty('--portrait-r');portrait.style.removeProperty('--portrait-x')});
+  let tx=-900,ty=-900,px=-900,py=-900,haloRequested=false;
 const glow=$('#cursorHalo');
 resumeHalo=()=>{if(!haloRequested&&motion&&!document.hidden){haloRequested=true;requestAnimationFrame(glowFrame)}};
 addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;resumeHalo()},{passive:true});
@@ -120,15 +161,107 @@ $$('[data-stack]').forEach((btn,i)=>{
   });
 });
 selectStack(0);
-// Procedural particle sphere: true 3D point rotations + perspective projection. No external library.
-const canvas=$('#sphere'),ctx=canvas?.getContext('2d',{alpha:true});let W=0,H=0,DPR=1,particles=[],phase=.1,mX=0,mY=0,targetX=0,targetY=0,orbRequested=false,sphereVisible=true,lastTime=0;
-function orbResize(){if(!ctx)return;const rect=canvas.getBoundingClientRect();W=rect.width;H=rect.height;DPR=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.max(1,Math.floor(W*DPR));canvas.height=Math.max(1,Math.floor(H*DPR));ctx.setTransform(DPR,0,0,DPR,0,0);particles=[];const n=isMobile()?250:650;for(let i=0;i<n;i++){const y=1-(i/(n-1))*2,r=Math.sqrt(Math.max(0,1-y*y)),a=Math.PI*(3-Math.sqrt(5))*i;particles.push({x:Math.cos(a)*r,y,z:Math.sin(a)*r,i})}drawSphere(true)}
-const orbZone=$('.hero-orbit');orbZone.addEventListener('pointermove',e=>{if(!motion)return;const r=orbZone.getBoundingClientRect();targetX=(e.clientX-r.left)/r.width-.5;targetY=(e.clientY-r.top)/r.height-.5},{passive:true});orbZone.addEventListener('pointerleave',()=>{targetX=targetY=0});
-function drawSphere(once=false){if(!ctx||W<2||H<2)return;const cx=W*.52,cy=H*.52,rad=Math.min(W*.39,H*.41);ctx.clearRect(0,0,W,H);mX+=(targetX-mX)*.045;mY+=(targetY-mY)*.045;if(motion&&!once)phase+=.005;const a=phase+mX*.75,b=.38+mY*.65,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);const glow=ctx.createRadialGradient(cx,cy,rad*.12,cx,cy,rad*1.22);glow.addColorStop(0,'rgba(137,107,255,.10)');glow.addColorStop(.7,'rgba(93,80,174,.06)');glow.addColorStop(1,'transparent');ctx.fillStyle=glow;ctx.beginPath();ctx.arc(cx,cy,rad*1.22,0,Math.PI*2);ctx.fill();ctx.save();ctx.translate(cx,cy);for(let k=0;k<4;k++){ctx.save();ctx.rotate(k*.67+phase*.31);ctx.scale(1,.26+k*.036);ctx.beginPath();ctx.strokeStyle=k===3?'rgba(59,130,246,.28)':'rgba(163,151,255,.17)';ctx.lineWidth=1;ctx.arc(0,0,rad*(.92+k*.07),0,Math.PI*2);ctx.stroke();ctx.restore()}ctx.restore();const pts=[];for(const p of particles){const x=p.x*ca-p.z*sa,z0=p.x*sa+p.z*ca,y=p.y*cb-z0*sb,z=p.y*sb+z0*cb,d=2.85/(2.85-z);pts.push({x:cx+x*rad*d,y:cy+y*rad*d,z,i:p.i,d})}pts.sort((p,q)=>p.z-q.z);for(const p of pts){const b=(p.z+1)/2,size=(.6+1.2*b)*p.d,op=.17+.77*b;let rgb=p.i%29===0?'59,130,246':p.i%11===0?'136,180,255':'183,154,255';ctx.beginPath();ctx.fillStyle=`rgba(${rgb},${op.toFixed(2)})`;ctx.arc(p.x,p.y,size,0,6.29);ctx.fill()}ctx.beginPath();ctx.strokeStyle='rgba(196,183,255,.31)';ctx.arc(cx,cy,rad*1.12,phase*.4,phase*.4+1.8);ctx.stroke();ctx.beginPath();ctx.strokeStyle='rgba(59,130,246,.45)';ctx.arc(cx,cy,rad*1.15,3.6-phase*.2,4.4-phase*.2);ctx.stroke()}
-function orbLoop(ts){orbRequested=false;if(!motion||!sphereVisible||document.hidden)return;if(ts-lastTime>=28){drawSphere();lastTime=ts}startOrb()}
-function startOrb(){if(!orbRequested&&motion&&sphereVisible&&!document.hidden&&ctx){orbRequested=true;requestAnimationFrame(orbLoop)}}
-if(ctx){orbResize();addEventListener('resize',orbResize,{passive:true});if('IntersectionObserver'in window){new IntersectionObserver(es=>{sphereVisible=es[0].isIntersecting;if(sphereVisible)startOrb()},{threshold:0}).observe($('.hero'))}startOrb()}
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){startOrb();resumeHalo()}});
+// Esfera 3D: mismas órbitas y paleta; puntos prerenderizados y memoria reutilizada.
+const canvas=$('#sphere'),ctx=canvas?.getContext('2d',{alpha:true});
+let W=0,H=0,DPR=1,points=[],phase=.1,mX=0,mY=0,targetX=0,targetY=0;
+let orbFrame=0,sphereVisible=true,lastTime=0,lastDraw=0,resizeFrame=0;
+let atlas,orbGlow,tile=0;
+const depthSteps=48,palette=['183,154,255','136,180,255','59,130,246'];
+const particleColors=palette.map(rgb=>Array.from({length:101},(_,alpha)=>`rgba(${rgb},${(alpha/100).toFixed(2)})`));
+function buildOrbLayers(){
+  const cx=W*.52,cy=H*.52,rad=Math.min(W*.39,H*.41);
+  orbGlow=ctx.createRadialGradient(cx,cy,rad*.12,cx,cy,rad*1.22);
+  orbGlow.addColorStop(0,'rgba(137,107,255,.10)');orbGlow.addColorStop(.7,'rgba(93,80,174,.06)');orbGlow.addColorStop(1,'transparent');
+  // En escritorio el trazado nativo conserva la nitidez y usa menos CPU que sprites.
+  atlas=null;if(!isMobile())return;
+  tile=Math.ceil(16*DPR);
+  atlas=document.createElement('canvas');atlas.width=tile*3;atlas.height=tile*depthSteps;
+  const brush=atlas.getContext('2d');
+  for(let color=0;color<3;color++)for(let depth=0;depth<depthSteps;depth++){
+    const b=depth/(depthSteps-1),d=2.85/(3.85-2*b);
+    brush.beginPath();brush.fillStyle=`rgba(${palette[color]},${.17+.77*b})`;
+    brush.arc(color*tile+tile/2,depth*tile+tile/2,(.6+1.2*b)*d*DPR,0,Math.PI*2);brush.fill();
+  }
+}
+function orbResize(){
+  if(!ctx)return;
+  const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,isMobile()?1.35:1.7),n=isMobile()?180:650;
+  if(W===rect.width&&H===rect.height&&DPR===dpr&&points.length===n)return;
+  W=rect.width;H=rect.height;DPR=dpr;
+  if(W<2||H<2)return;
+  canvas.width=Math.max(1,Math.floor(W*DPR));canvas.height=Math.max(1,Math.floor(H*DPR));
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  if(points.length!==n){
+    points=[];
+    for(let i=0;i<n;i++){
+      const y=1-i/(n-1)*2,r=Math.sqrt(Math.max(0,1-y*y)),a=Math.PI*(3-Math.sqrt(5))*i;
+      points.push({sx:Math.cos(a)*r,sy:y,sz:Math.sin(a)*r,color:i%29===0?2:i%11===0?1:0,x:0,y:0,z:0,d:1});
+    }
+  }
+  buildOrbLayers();drawSphere(true);
+}
+const orbZone=$('.hero-orbit');
+let orbPointer=null,orbPointerFrame=0;
+orbZone.addEventListener('pointermove',e=>{
+  if(!motion||e.pointerType==='touch')return;
+  orbPointer={x:e.clientX,y:e.clientY};
+  if(!orbPointerFrame)orbPointerFrame=requestAnimationFrame(()=>{
+    orbPointerFrame=0;if(!motion||!orbPointer)return;
+    const r=orbZone.getBoundingClientRect();targetX=(orbPointer.x-r.left)/r.width-.5;targetY=(orbPointer.y-r.top)/r.height-.5;
+  });
+},{passive:true});
+orbZone.addEventListener('pointerleave',()=>{orbPointer=null;targetX=targetY=0});
+function drawSphere(once=false,elapsed=1000/30){
+  if(!ctx||!orbGlow||W<2||H<2)return;
+  const cx=W*.52,cy=H*.52,rad=Math.min(W*.39,H*.41),smoothing=1-Math.exp(-elapsed*.00138);
+  ctx.clearRect(0,0,W,H);mX+=(targetX-mX)*smoothing;mY+=(targetY-mY)*smoothing;
+  if(motion&&!once)phase+=.00015*elapsed;
+  const a=phase+mX*.75,b=.38+mY*.65,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);
+  ctx.fillStyle=orbGlow;ctx.beginPath();ctx.arc(cx,cy,rad*1.22,0,Math.PI*2);ctx.fill();
+  ctx.save();ctx.translate(cx,cy);
+  for(let k=0;k<4;k++){
+    ctx.save();ctx.rotate(k*.67+phase*.31);ctx.scale(1,.26+k*.036);ctx.beginPath();
+    ctx.strokeStyle=k===3?'rgba(59,130,246,.28)':'rgba(163,151,255,.17)';ctx.lineWidth=1;
+    ctx.arc(0,0,rad*(.92+k*.07),0,Math.PI*2);ctx.stroke();ctx.restore();
+  }
+  ctx.restore();
+  for(const p of points){
+    const x=p.sx*ca-p.sz*sa,z0=p.sx*sa+p.sz*ca,y=p.sy*cb-z0*sb,z=p.sy*sb+z0*cb,d=2.85/(2.85-z);
+    p.x=cx+x*rad*d;p.y=cy+y*rad*d;p.z=z;p.d=d;
+  }
+  points.sort((p,q)=>p.z-q.z);
+  if(atlas){
+    const size=tile/DPR;
+    for(const p of points){
+      const depth=Math.max(0,Math.min(depthSteps-1,Math.round((p.z+1)*.5*(depthSteps-1))));
+      ctx.drawImage(atlas,p.color*tile,depth*tile,tile,tile,p.x-size/2,p.y-size/2,size,size);
+    }
+  }else for(const p of points){
+    const depth=(p.z+1)/2;
+    ctx.fillStyle=particleColors[p.color][Math.round((.17+.77*depth)*100)];
+    ctx.beginPath();ctx.arc(p.x,p.y,(.6+1.2*depth)*p.d,0,6.29);ctx.fill();
+  }
+  ctx.beginPath();ctx.strokeStyle='rgba(196,183,255,.31)';ctx.arc(cx,cy,rad*1.12,phase*.4,phase*.4+1.8);ctx.stroke();
+  ctx.beginPath();ctx.strokeStyle='rgba(59,130,246,.45)';ctx.arc(cx,cy,rad*1.15,3.6-phase*.2,4.4-phase*.2);ctx.stroke();
+}
+function orbLoop(ts){
+  orbFrame=0;if(!motion||!sphereVisible||document.hidden)return;
+  const interval=1000/(isMobile()?24:30),elapsed=ts-lastTime;
+  if(!lastTime||elapsed>=interval){drawSphere(false,lastDraw?Math.min(100,ts-lastDraw):interval);lastDraw=ts;lastTime=ts-(elapsed%interval)}
+  startOrb();
+}
+function startOrb(){if(!orbFrame&&motion&&sphereVisible&&!document.hidden&&ctx)orbFrame=requestAnimationFrame(orbLoop)}
+function stopOrb(){cancelAnimationFrame(orbFrame);orbFrame=0;lastTime=lastDraw=0}
+function requestOrbResize(){if(!resizeFrame)resizeFrame=requestAnimationFrame(()=>{resizeFrame=0;orbResize();startOrb()})}
+if(ctx){
+  requestOrbResize();addEventListener('resize',requestOrbResize,{passive:true});
+  if('ResizeObserver'in window)new ResizeObserver(requestOrbResize).observe(canvas);
+  if('IntersectionObserver'in window)new IntersectionObserver(entries=>{sphereVisible=entries[0].isIntersecting;if(sphereVisible)startOrb();else stopOrb()}).observe(orbZone);
+}
+document.addEventListener('visibilitychange',()=>{
+  root.classList.toggle('page-hidden',document.hidden);
+  if(document.hidden)stopOrb();else{startOrb();resumeHalo()}
+});
 if('IntersectionObserver' in window){
   new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>target.classList.toggle('is-in-view',isIntersecting))).observe($('.ticker'));
   const regions=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>target.classList.toggle('is-in-view',isIntersecting)));

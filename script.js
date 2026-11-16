@@ -68,9 +68,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitButton = contactForm.querySelector('.btn-submit');
         const originalButtonText = submitButton.innerHTML;
         const contactStatus = document.getElementById('contact-status');
+        // La confirmación conserva su diseño sin descargar una biblioteca en cada visita.
+        let alertLibrary;
+        let submitting = false;
+        const loadAlertLibrary = () => {
+            if (typeof window.Swal?.fire === 'function') return Promise.resolve();
+            if (alertLibrary) return alertLibrary;
+            alertLibrary = new Promise(resolve => {
+                const script = document.createElement('script');
+                script.src = 'public/vendor/sweetalert2-11.26.3.min.js';
+                script.async = true;
+                const finish = () => { window.clearTimeout(timeout); resolve(); };
+                const timeout = window.setTimeout(finish, 3000);
+                script.onload = script.onerror = finish;
+                document.head.append(script);
+            });
+            return alertLibrary;
+        };
 
         const showContactResult = async (success, message) => {
             const title = success ? '¡Mensaje enviado!' : 'No se pudo enviar el mensaje';
+            await loadAlertLibrary();
             if (typeof window.Swal?.fire === 'function') {
                 try {
                     contactStatus.textContent = '';
@@ -95,13 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         contactForm.addEventListener('submit', async event => {
             event.preventDefault();
-            if (submitButton.disabled || !contactForm.reportValidity()) return;
+            if (submitting || submitButton.disabled || !contactForm.reportValidity()) return;
+            submitting = true;
 
             contactStatus.classList.add('sr-only');
             contactStatus.textContent = 'Enviando mensaje…';
             contactForm.setAttribute('aria-busy', 'true');
             submitButton.disabled = true;
             submitButton.textContent = 'Enviando…';
+            void loadAlertLibrary();
 
             let success = false;
             let message = 'No se pudo completar el envío. Tus datos se conservaron; podés reintentar o contactarme por correo electrónico.';
@@ -136,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             submitButton.focus();
-            await showContactResult(success, message);
+            try {
+                await showContactResult(success, message);
+            } finally {
+                submitting = false;
+            }
         });
     }
 

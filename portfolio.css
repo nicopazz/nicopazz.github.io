@@ -8,6 +8,8 @@
 }
 body { line-height: normal; }
 .cursor-halo { top: 0; left: 0; }
+.progress { width: 100%; transform: scaleX(0); transform-origin: left; }
+.page-hidden *, .page-hidden *::before, .page-hidden *::after { animation-play-state: paused !important; }
 .hero:not(.is-in-view)::before, .ticker:not(.is-in-view) .ticker-track,
 .scene:not(.is-in-view) .float-chip { animation-play-state: paused; }
 p { color: inherit; }

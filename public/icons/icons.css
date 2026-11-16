@@ -1,0 +1,13 @@
+/* Original Font Awesome Free 6.4.0 icons, CC BY 4.0. See LICENSE.txt. */
+.fas,.fab{display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+.fas::before,.fab::before{content:"";display:inline-block;height:1em;vertical-align:-.125em;background-color:currentColor;mask:var(--icon) center/contain no-repeat;-webkit-mask:var(--icon) center/contain no-repeat}
+.fa-arrow-right{--icon:url("./arrow-right.svg")} .fa-arrow-right::before{width:0.875em}
+.fa-arrow-left{--icon:url("./arrow-left.svg")} .fa-arrow-left::before{width:0.875em}
+.fa-arrow-up{--icon:url("./arrow-up.svg")} .fa-arrow-up::before{width:0.75em}
+.fa-arrow-up-right-from-square{--icon:url("./arrow-up-right-from-square.svg")} .fa-arrow-up-right-from-square::before{width:1em}
+.fa-expand{--icon:url("./expand.svg")} .fa-expand::before{width:0.875em}
+.fa-xmark{--icon:url("./xmark.svg")} .fa-xmark::before{width:0.75em}
+.fa-bars{--icon:url("./bars.svg")} .fa-bars::before{width:0.875em}
+.fa-github{--icon:url("./github.svg")} .fa-github::before{width:0.96875em}
+.fa-linkedin{--icon:url("./linkedin.svg")} .fa-linkedin::before{width:0.875em}
+@media(forced-colors:active){.fas::before,.fab::before{forced-color-adjust:none;background-color:CanvasText}}
