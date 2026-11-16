@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "title": "Design System: Nicolás Paz Portfolio",
+  "extensions": {
+    "shadows": [],
+    "motion": [
+      { "name": "control-transition", "value": "180ms ease", "purpose": "Button, menu, input and social-link state changes; disabled for reduced motion." },
+      { "name": "card-transition", "value": "200ms ease", "purpose": "Project-card border changes; disabled for reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "compact-navigation", "value": "968px" },
+      { "name": "stacked-content", "value": "800px" },
+      { "name": "mobile", "value": "600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "description": "Gradient main action with visible keyboard focus.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Enviar Mensaje</button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 21px;border:1px solid transparent;border-radius:9px;background:var(--gradient-button,linear-gradient(120deg,#2456b5,#673db2));color:#fff;font:500 .87rem/1.5 Poppins,sans-serif;cursor:pointer;transition:background-color 180ms ease,border-color 180ms ease,transform 180ms ease}.ds-primary:hover{background:linear-gradient(120deg,#204ca2,#59349c)}.ds-primary:focus-visible{outline:3px solid #c4b5fd;outline-offset:5px}.ds-primary:disabled{cursor:wait;opacity:.65}@media(prefers-reduced-motion:no-preference){.ds-primary:hover{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined supporting action.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Ver caso de estudio</button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 21px;border:1px solid #47485e;border-radius:9px;background:transparent;color:var(--text-primary,#f4f5fa);font:500 .87rem/1.5 Poppins,sans-serif;cursor:pointer;transition:background-color 180ms ease,border-color 180ms ease,transform 180ms ease}.ds-secondary:hover{border-color:#9c88cb;background:#191523}.ds-secondary:focus-visible{outline:3px solid #c4b5fd;outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-secondary:hover{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Visible label and dark field used by the contact form.",
+      "html": "<label class=\"ds-field\">Nombre<input class=\"ds-input\" type=\"text\" name=\"nombre\" autocomplete=\"name\" placeholder=\"Tu Nombre\" required minlength=\"2\" maxlength=\"50\"></label>",
+      "css": ".ds-field{display:block;color:var(--text-secondary,#b2b5c4);font:.85rem/1.7 Poppins,sans-serif}.ds-input{display:block;width:calc(100% - 32px);min-height:22px;margin-top:8px;padding:12px 15px;border:1px solid #454659;border-radius:8px;background:var(--bg-secondary,#11111a);color:var(--text-primary,#f4f5fa);font:1rem/1.7 Poppins,sans-serif;caret-color:#c4b5fd;transition:border-color 180ms ease}.ds-input::placeholder{color:#969aae;opacity:1}.ds-input:focus{border-color:#b79aff}.ds-input:focus-visible{outline:3px solid #c4b5fd;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-input{transition:none}}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "description": "Non-interactive technology metadata in a semantic list.",
+      "html": "<ul class=\"ds-tags\"><li>TypeScript</li><li>PostgreSQL</li></ul>",
+      "css": ".ds-tags{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:22px 0}.ds-tags li{background:var(--bg-raised,#171722);border:1px solid var(--border,#2a2b3a);border-radius:5px;padding:4px 9px;color:#c1c4d2;font:.7rem/1.55 Poppins,sans-serif}"
+    },
+    {
+      "name": "Project card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Tonal bordered project surface; screenshot layouts remain defined by the page stylesheet.",
+      "html": "<article class=\"ds-card\"><h3>Archiva</h3><p>Organizar el presente para preservar la historia.</p><a href=\"proyectos/archiva.html\">Ver caso de estudio</a></article>",
+      "css": ".ds-card{padding:24px;border:1px solid var(--border,#2a2b3a);border-radius:var(--radius,14px);background:var(--bg-secondary,#11111a);font:.87rem/1.8 Poppins,sans-serif;transition:border-color 200ms ease}.ds-card:hover,.ds-card:focus-within{border-color:#595071}.ds-card h3{margin:0;color:var(--text-primary,#f4f5fa);font-size:1.35rem;line-height:1.2;font-weight:600;letter-spacing:-.015em}.ds-card p{color:var(--text-secondary,#b2b5c4)}.ds-card a{display:inline-flex;align-items:center;min-height:44px;color:var(--link-color,#a8c8ff);text-underline-offset:.25em}.ds-card a:hover{color:var(--text-primary,#f4f5fa)}.ds-card a:focus-visible{outline:3px solid #c4b5fd;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}}"
+    },
+    {
+      "name": "Navigation links",
+      "kind": "nav",
+      "description": "Desktop navigation sample; the mobile menu behavior is implemented in the site script.",
+      "html": "<nav aria-label=\"Navegación de muestra\"><ul class=\"ds-nav\"><li><a href=\"#proyectos\">Proyectos</a></li><li><a href=\"#experiencia\">Experiencia</a></li><li><a href=\"#contacto\">Contacto</a></li></ul></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;align-items:center;gap:24px;list-style:none;margin:0;padding:0;background:rgba(10,10,18,.97)}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--text-secondary,#b2b5c4);font:.85rem/1.7 Poppins,sans-serif;text-decoration:none}.ds-nav a:hover,.ds-nav a:focus-visible{color:var(--text-primary,#f4f5fa)}.ds-nav a:focus-visible{outline:3px solid #c4b5fd;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "overview": "Dark personal portfolio with Poppins typography, restrained blue/violet gradients, tonal layering and a clear project hierarchy. Extracted from source; browser visual verification was not available.",
+    "keyCharacteristics": ["Gradient name and primary actions", "Full-width featured projects", "Compact experience and skill rows", "Semantic forms and keyboard-accessible navigation"],
+    "rules": [{ "name": "Tonal depth", "body": "Separate surfaces with dark tones and borders, without box shadows.", "section": "elevation" }],
+    "dos": ["Do preserve the dark identity and name gradient.", "Do keep visible focus and reduced-motion support.", "Do reuse the three implemented responsive breakpoints."],
+    "donts": ["Don't invent skill ratings or portfolio claims.", "Don't turn descriptive technology tags into controls."]
+  }
+}

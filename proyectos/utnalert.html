@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0a12" />
+    <title>UTNalert — Gestión de incidentes en equipo | Nicolás Paz</title>
+    <meta name="description" content="Caso de estudio de UTNalert, proyecto universitario colaborativo. Aportes de Nicolás Paz en formulario guiado, mapas, dashboard y pruebas responsive." />
+    <link rel="canonical" href="https://nicopazz.github.io/proyectos/utnalert.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content="UTNalert — Gestión de incidentes en equipo · Nicolás Paz" />
+    <meta property="og:description" content="Caso de estudio de UTNalert, proyecto universitario colaborativo. Aportes de Nicolás Paz en formulario guiado, mapas, dashboard y pruebas responsive." />
+    <meta property="og:url" content="https://nicopazz.github.io/proyectos/utnalert.html" />
+    <meta property="og:image" content="https://nicopazz.github.io/public/utnalert-portfolio.webp" />
+    <meta property="og:image:alt" content="Captura de la interfaz de UTNalert" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="../public/portf.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../style.css?v=20261116-produccion" />
+    <script defer src="../script.js?v=20261116-produccion"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <nav class="case-nav container" aria-label="Navegación del caso de estudio">
+        <a href="../index.html#inicio" class="logo" aria-label="Nicolás Paz, inicio">Nicolás Paz<span aria-hidden="true">.</span></a>
+        <a class="text-link" href="../index.html#proyectos"><i class="fas fa-arrow-left" aria-hidden="true"></i> Volver a proyectos</a>
+      </nav>
+    </header>
+    <main id="contenido" class="case-main container" tabindex="-1">
+      <nav class="breadcrumb" aria-label="Ubicación"><a href="../index.html#proyectos">Proyectos</a><span aria-hidden="true">/</span><span aria-current="page">UTNalert</span></nav>
+      <div class="case-hero">
+        <h1>UTNalert<span class="accent-dot" aria-hidden="true">.</span></h1>
+        <p class="case-lead">Reportar y gestionar incidentes dentro de una institución, con el campus como contexto.</p>
+        <p>Proyecto universitario colaborativo de la UTN. Una plataforma que combina reportes, ubicaciones y herramientas de administración. Este caso distingue el trabajo del equipo de mis contribuciones personales.</p>
+        <ul class="tech-list" aria-label="Stack de UTNalert"><li>React</li><li>TypeScript</li><li>Vite</li><li>Supabase</li><li>PostgreSQL</li></ul>
+      </div>
+      <figure class="case-image">
+        <img src="../public/utnalert-portfolio.webp" alt="Dashboard de UTNalert con plano del campus, distribución de incidentes y resumen por ubicación" width="1280" height="800" fetchpriority="high" decoding="async" />
+        <figcaption>Vista del mapa del campus y resumen de incidentes. Los valores de la captura no representan métricas de impacto del proyecto.</figcaption>
+      </figure>
+      <div class="case-layout">
+        <div class="case-copy">
+          <section aria-labelledby="problem-title">
+            <h2 id="problem-title">El problema</h2>
+            <p>Un reporte necesita algo más que una descripción: ubicación, tipo de incidente y prioridad ayudan a comprenderlo. La plataforma busca organizar esa información y ofrecer una vista común para su gestión.</p>
+          </section>
+          <section aria-labelledby="team-title">
+            <h2 id="team-title">El proyecto del equipo</h2>
+            <p>UTNalert reúne reportes de incidentes, autenticación, mapas del campus y un panel administrativo. Fue desarrollado de forma colaborativa como proyecto universitario.</p>
+          </section>
+          <section aria-labelledby="contribution-title">
+            <h2 id="contribution-title">Mis contribuciones</h2>
+            <ul>
+              <li><strong>Formulario guiado:</strong> flujo con ubicación, fotografía opcional, tipo de incidente, urgencia y revisión antes del envío.</li>
+              <li><strong>Experiencia responsive:</strong> adaptación y pruebas del reporte en pantallas pequeñas.</li>
+              <li><strong>Mapa interactivo:</strong> trabajo sobre la ubicación de incidentes en el campus y su representación visual.</li>
+              <li><strong>Dashboard:</strong> aportes a la vista general de incidentes del panel de administración.</li>
+              <li><strong>Pruebas:</strong> escenarios automatizados del flujo guiado y su comportamiento responsive.</li>
+            </ul>
+          </section>
+          <section aria-labelledby="architecture-title">
+            <h2 id="architecture-title">Arquitectura general</h2>
+            <p>La interfaz está construida con React y TypeScript, utilizando Vite. Se integra con Supabase y PostgreSQL para los servicios y la persistencia de datos.</p>
+            <ol class="architecture-flow" aria-label="Componentes principales">
+              <li><strong>Interfaz</strong><span>React · TypeScript · Vite</span></li>
+              <li><strong>Servicios</strong><span>Supabase</span></li>
+              <li><strong>Datos</strong><span>PostgreSQL</span></li>
+            </ol>
+          </section>
+          <section aria-labelledby="ai-title">
+            <h2 id="ai-title">Exploración de inteligencia artificial</h2>
+            <p>El proyecto incluye una integración experimental para sugerir información a partir de una imagen. Su disponibilidad depende de la configuración y del acceso habilitado para la demostración.</p>
+            <p class="case-note"><strong>Estado: piloto experimental.</strong> La clasificación visual no se presenta como una funcionalidad productiva confirmada. Las sugerencias requieren revisión de la persona que reporta.</p>
+          </section>
+          <section aria-labelledby="scope-title">
+            <h2 id="scope-title">Alcance de este caso</h2>
+            <p>La captura y las funcionalidades descritas muestran el trabajo del proyecto. Mi participación se limita a los aportes indicados; no atribuyo a mi autoría individual el desarrollo completo. El repositorio es privado.</p>
+          </section>
+        </div>
+        <aside class="case-facts" aria-labelledby="facts-title">
+          <h2 id="facts-title">Ficha del proyecto</h2>
+          <dl>
+            <dt>Tipo</dt><dd>Universitario colaborativo</dd>
+            <dt>Mi participación</dt><dd>Interfaces, mapas, dashboard y pruebas</dd>
+            <dt>Dominio</dt><dd>Gestión de incidentes</dd>
+            <dt>IA visual</dt><dd>Piloto experimental</dd>
+            <dt>Código</dt><dd>Repositorio privado</dd>
+          </dl>
+        </aside>
+      </div>
+      <div class="case-closing">
+        <a class="btn primary" href="../index.html#contacto">Hablemos del proyecto <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        <a class="text-link" href="archiva.html">Conocer Archiva <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="container footer-content"><p>© 2026 Nicolás Paz · Portfolio profesional</p><a class="text-link" href="../index.html#contacto">Contacto <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></footer>
+  </body>
+</html>
