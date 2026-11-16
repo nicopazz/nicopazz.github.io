@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.textContent = 'Enviando…';
 
             let success = false;
-            let message = 'No se pudo completar el envío. Tus datos se conservaron; podés reintentar o contactarme por email.';
+            let message = 'No se pudo completar el envío. Tus datos se conservaron; podés reintentar o contactarme por correo electrónico.';
             const controller = new AbortController();
             const timeout = window.setTimeout(() => controller.abort(), 20000);
 
@@ -120,13 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactForm.reset();
                     message = 'Gracias por contactarme. Te responderé a la brevedad.';
                 } else if (response.status === 429) {
-                    message = 'Hay demasiados intentos de envío. Esperá unos minutos o contactame por email.';
+                    message = 'Hay demasiados intentos de envío. Esperá unos minutos o contactame por correo electrónico.';
                 } else if (response.status === 400 || response.status === 422) {
-                    message = 'Revisá los datos del formulario e intentá nuevamente. También podés contactarme por email.';
+                    message = 'Revisá los datos del formulario e intentá nuevamente. También podés contactarme por correo electrónico.';
                 }
             } catch (error) {
                 if (error.name === 'AbortError') {
-                    message = 'La confirmación tardó demasiado. No pude confirmar el envío; podés contactarme por email.';
+                    message = 'La confirmación tardó demasiado. No pude confirmar el envío; podés contactarme por correo electrónico.';
                 }
             } finally {
                 window.clearTimeout(timeout);
@@ -140,29 +140,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mejora progresiva: el contenido nunca depende de una animación para ser visible.
-    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if ('IntersectionObserver' in window && !motionPreference.matches) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                observer.unobserve(entry.target);
-                if (!motionPreference.matches && typeof entry.target.animate === 'function') {
-                    entry.target.animate(
-                        [{ opacity: 0.7, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }],
-                        { duration: 380, easing: 'cubic-bezier(0.2, 0.65, 0.3, 1)' }
-                    );
-                }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.featured-project, .secondary-projects .project-card, .experience-entry, .education-entry')
-            .forEach(element => observer.observe(element));
-
-        motionPreference.addEventListener('change', () => {
-            if (motionPreference.matches) {
-                observer.disconnect();
-                document.getAnimations().forEach(animation => animation.cancel());
-            }
-        });
-    }
 });
